@@ -1,0 +1,44 @@
+{
+	"users": [
+		{
+			"username": "max99",
+			"first_name": "Maxim",
+			"last_name": "Hevorgyan",
+			"email": "h_maxi@gmail.com",
+			"password": "75f823aa1e6927d885ec6f9715677ca6c5a0e580c029c8dc3f1b1ad43880ca9b",
+			"user_type": "DRIVER"
+		},
+		{
+			"username": "j_smith",
+			"first_name": "Jack",
+			"last_name": "Helpert",
+			"email": "jack_helpert_us@gmail.com",
+			"password": "e3d783ce886e9873c567a6fd18dc16fa4eecacebb788ff5ce9d0f14cc20dc15d",
+			"user_type": "DRIVER"
+		},
+		{
+			"username": "julia_melnyk",
+			"first_name": "Julia",
+			"last_name": "Melnyk",
+			"email": "julia.99@gmail.com",
+			"password": "4b9c33dfffaa5b1fe5c88c7f7ff19f139851a4bf59b4b0201a11d311e0cb1237",
+			"user_type": "DRIVER"
+		},
+		{
+			"username": "amazing",
+			"first_name": "Artem",
+			"last_name": "Mazovski",
+			"email": "amazing@gmail.com",
+			"password": "ba1b7a466573cb8e84c26fb58db693bd50a272732e3024a02be3ffbfc917ec2b",
+			"user_type": "ADMIN"
+		},
+		{
+			"username": "pbeesly",
+			"first_name": "Pam",
+			"last_name": "Beesly",
+			"email": "pbeesly@gmail.com",
+			"password": "0a22c78b7b836a41da3bf0815197e090fecab03b77fa2fc12947ae98710ed378",
+			"user_type": "ADMIN"
+		}
+	]
+}
