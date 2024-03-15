@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interface';
-
-import sha from 'sha.js';
 import { PasswordStrengthDirective } from '../../directives/password-strength.directive';
 import { NgIf } from '@angular/common';
 import { MandatoryDirective } from '../../directives/mandatory.directive';
+import { NameCharactersDirective } from '../../directives/name-characters.directive';
 
+import sha from 'sha.js';
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -16,6 +16,7 @@ import { MandatoryDirective } from '../../directives/mandatory.directive';
     ReactiveFormsModule,
     PasswordStrengthDirective,
     MandatoryDirective,
+    NameCharactersDirective,
     NgIf,
   ],
   templateUrl: './user-form.component.html',

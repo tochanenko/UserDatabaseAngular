@@ -12,11 +12,13 @@
 	<input type="text" id="id" name="id" formControlName="id" mandatory>
 	<p *ngIf="createUserForm.get('id')?.hasError('empty') && createUserForm.get('id')?.touched">Username should not be empty</p>
 	<label for="first_name">First Name</label>
-	<input type="text" id="first_name" name="first_name" formControlName="first_name" mandatory>
+	<input type="text" id="first_name" name="first_name" formControlName="first_name" mandatory nameCharacters>
 	<p *ngIf="createUserForm.get('first_name')?.hasError('empty') && createUserForm.get('first_name')?.touched">First Name should not be empty</p>
+	<p *ngIf="createUserForm.get('first_name')?.hasError('hasWrongCharacters') && createUserForm.get('first_name')?.dirty">Incorrect characters in First Name</p>
 	<label for="last_name">Last Name</label>
-	<input type="" id="last_name" name="last_name" formControlName="last_name" mandatory>
+	<input type="" id="last_name" name="last_name" formControlName="last_name" mandatory nameCharacters>
 	<p *ngIf="createUserForm.get('last_name')?.hasError('empty') && createUserForm.get('last_name')?.touched">Last Name should not be empty</p>
+	<p *ngIf="createUserForm.get('last_name')?.hasError('hasWrongCharacters') && createUserForm.get('last_name')?.dirty">Incorrect characters in Last Name</p>
 	<label for="email">email</label>
 	<input type="email" id="email" name="email" formControlName="email" mandatory>
 	<p *ngIf="createUserForm.get('email')?.hasError('empty') && createUserForm.get('email')?.touched">Email should not be empty</p>
