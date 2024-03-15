@@ -4,13 +4,13 @@ import { User } from '../../interfaces/user.interface';
 import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'userlist',
+  selector: 'user-list',
   standalone: true,
   imports: [NgFor],
-  templateUrl: './userlist.component.html',
-  styleUrl: './userlist.component.scss'
+  templateUrl: './user-list.component.html',
+  styleUrl: './user-list.component.scss'
 })
-export class UserlistComponent implements OnInit {
+export class UserListComponent implements OnInit {
   users: User[] = [];
 
   constructor(

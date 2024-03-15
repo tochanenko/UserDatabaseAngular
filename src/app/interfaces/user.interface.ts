@@ -1,4 +1,4 @@
-import { UserType } from "./usertype.type";
+import { UserType } from "./user-type.type";
 
 export class User {
 	public constructor(

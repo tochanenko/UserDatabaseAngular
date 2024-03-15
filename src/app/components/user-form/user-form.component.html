@@ -22,7 +22,10 @@
 		<option value="DRIVER">DRIVER</option>
 	</select>
 	<label for="password">Password</label>
-	<input type="password" id="password" name="password" formControlName="password">
+	<input type="password" id="password" name="password" formControlName="password" passwordStrength>
+	<p *ngIf="createUserForm.get('password')?.hasError('insufficientPasswordLength')">Password must be at least 8 symbols long</p>
+	<p *ngIf="createUserForm.get('password')?.hasError('doesntHaveNumeric')">Password should have at least one number</p>
+	<p *ngIf="createUserForm.get('password')?.hasError('doesntHaveLetters')">Password should have at least one letter</p>
 	<label for="password_repeat">Repeat Password</label>
 	<input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat">
 
