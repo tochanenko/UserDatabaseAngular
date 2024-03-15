@@ -14,6 +14,7 @@ import sha from 'sha.js';
   styleUrl: './userlist.component.scss'
 })
 export class UserlistComponent implements OnInit {
+  // TODO Move all User Creation Logic to createuser.component.ts
   // TODO Implement user Form Validation
 
   users: User[] = [];

@@ -2,15 +2,20 @@
 @import '../../styles/dimens.scss';
 @import '../../styles/styles.scss';
 
-.userstable {
-	top: 185px;
-	left: 46px;
-	width: 1218px;
+:host {
+	margin-top: $userlist-margin-top;
+	margin-left: $userlist-margin-left;
+	padding-bottom: $pd-4;
+	display: inline-block;
 
 	background-color: $background-color;
 	outline: $border-gray;
 	border-radius: $border-radius;
 	box-shadow: $shadow;
+}
+
+.userstable {
+	width: $usertable-width;
 
 	border-spacing: 0 $usertable-row-spacing;
 

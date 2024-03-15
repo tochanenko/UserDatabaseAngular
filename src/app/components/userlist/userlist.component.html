@@ -1,4 +1,3 @@
-<h1>Users:</h1>
 <table class="userstable">
 	<tr class="userstable__header">
 		<th>Username</th>
@@ -18,7 +17,8 @@
 		<td>{{ user.user_type }}</td>
 	</tr>
 </table>
-
+<!--
+TODO Move to createuser.component.html
 <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
 	<label for="id">Username</label>
 	<input type="text" id="id" name="id" formControlName="id">
@@ -39,4 +39,4 @@
 	<input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat">
 
 	<button type="submit">Create</button>
-</form>
+</form> -->
