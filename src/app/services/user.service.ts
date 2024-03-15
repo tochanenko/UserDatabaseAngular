@@ -8,19 +8,25 @@ import { User } from '../interfaces/user.interface';
 })
 export class UserService {
 
-  private baseUrl = "http://localhost:3000"
+  private baseUrl = "http://localhost:3000/users"
 
   constructor(private http: HttpClient) {  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(
-      this.baseUrl + '/users', { headers: { Accept: 'application/json' } }
+      this.baseUrl, { headers: { Accept: 'application/json' } }
     );
   }
 
   postUser(user: User): Observable<User> {
     return this.http.post<User>(
-      this.baseUrl + '/users', user, { headers: { Accept: 'application/json' } }
+      this.baseUrl, user, { headers: { Accept: 'application/json' } }
+    )
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(
+      `${this.baseUrl}\\${user.id}`, user, { headers: { Accept: 'application/json' } }
     )
   }
 }

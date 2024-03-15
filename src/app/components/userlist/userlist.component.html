@@ -2,8 +2,8 @@
 <p>{{ json.stringify(users) }}</p>
 
 <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
-	<label for="username">Username</label>
-	<input type="text" id="username" name="username" formControlName="username">
+	<label for="id">Username</label>
+	<input type="text" id="id" name="id" formControlName="id">
 	<label for="first_name">First Name</label>
 	<input type="text" id="first_name" name="first_name" formControlName="first_name">
 	<label for="last_name">Last Name</label>
