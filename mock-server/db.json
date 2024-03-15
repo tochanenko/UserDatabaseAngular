@@ -50,26 +50,17 @@
     },
     {
       "id": "T5",
-      "first_name": "Test",
-      "last_name": "Testtest5",
-      "email": "tt5@gmail.com",
-      "password": "000000000",
-      "user_type": "ADMIN",
-      "password_repeat": "111111111"
+      "first_name": "Test005",
+      "last_name": "Testtest005",
+      "email": "tt005@gmail.com",
+      "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+      "user_type": "DRIVER"
     },
     {
       "id": "T6",
       "first_name": "Test",
       "last_name": "Testtest6",
       "email": "tt6@gmail.com",
-      "password": null,
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "T001",
-      "first_name": "Test001",
-      "last_name": "Testtest001",
-      "email": "tt001",
       "password": null,
       "user_type": "ADMIN"
     },

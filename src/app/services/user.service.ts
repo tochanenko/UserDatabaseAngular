@@ -18,15 +18,27 @@ export class UserService {
     );
   }
 
+  getUser(id: String): Observable<User> {
+    return this.http.get<User>(
+      `${this.baseUrl}/${id}`,  { headers: { Accept: 'application/json' } }
+    );
+  }
+
   postUser(user: User): Observable<User> {
     return this.http.post<User>(
       this.baseUrl, user, { headers: { Accept: 'application/json' } }
-    )
+    );
   }
 
   updateUser(user: User): Observable<User> {
     return this.http.put<User>(
-      `${this.baseUrl}\\${user.id}`, user, { headers: { Accept: 'application/json' } }
-    )
+      `${this.baseUrl}/${user.id}`, user, { headers: { Accept: 'application/json' } }
+    );
+  }
+
+  deleteUser(user: User): Observable<unknown> {
+    return this.http.delete(
+      `${this.baseUrl}/${user.id}`, { headers: { Accept: 'application/json' } }
+    );
   }
 }
