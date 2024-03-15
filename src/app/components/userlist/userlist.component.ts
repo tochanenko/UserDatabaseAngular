@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interface';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgFor } from '@angular/common';
 
 import sha from 'sha.js';
 
 @Component({
   selector: 'userlist',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, NgFor],
   templateUrl: './userlist.component.html',
   styleUrl: './userlist.component.scss'
 })

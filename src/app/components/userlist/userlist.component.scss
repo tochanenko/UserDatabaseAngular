@@ -1,0 +1,55 @@
+@import '../../styles/colors.scss';
+@import '../../styles/dimens.scss';
+@import '../../styles/styles.scss';
+
+.userstable {
+	top: 185px;
+	left: 46px;
+	width: 1218px;
+
+	background-color: $background-color;
+	outline: $border-gray;
+	border-radius: $border-radius;
+	box-shadow: $shadow;
+
+	border-spacing: 0 $usertable-row-spacing;
+
+	&__header {
+		color: $usertable-header-text-color;
+		font-size: $usertable-header-text-size;
+		font-weight: bold;
+		text-transform: uppercase;
+		text-align: left;
+
+		& > th:first-child {
+			padding-left: $pd-1;
+		}
+
+		& > th {
+			box-sizing: border-box;
+			padding: $pd-1 0 $pd-3 0;
+			width: 243px;
+		}
+	}
+
+	&__row {
+		color: $text-color;
+		font-size: $usertable-row-text-size;
+
+		background-color: $usertable-row-background-color;
+		transition: .3s background-color;
+
+		&:hover {
+			background-color: $usertable-row-background-color--hover;
+		}
+
+		& > td:first-child {
+			padding-left: $pd-1;
+		}
+
+		& > td {
+			padding: $pd-2 0 $pd-3 0;
+		}
+	}
+}
+
