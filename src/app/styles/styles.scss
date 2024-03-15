@@ -3,3 +3,10 @@
 
 $border-gray: 1px solid $border-color;
 $shadow: 0px 0px 30px #523F690D;
+
+@mixin card {
+	background-color: $background-color;
+	outline: $border-gray;
+	border-radius: $border-radius;
+	box-shadow: $shadow;
+}

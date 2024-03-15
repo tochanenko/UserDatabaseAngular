@@ -8,10 +8,7 @@
 	padding-bottom: $pd-4;
 	display: inline-block;
 
-	background-color: $background-color;
-	outline: $border-gray;
-	border-radius: $border-radius;
-	box-shadow: $shadow;
+	@include card;
 }
 
 .userstable {

@@ -1,0 +1,21 @@
+<form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+	<label for="id">Username</label>
+	<input type="text" id="id" name="id" formControlName="id">
+	<label for="first_name">First Name</label>
+	<input type="text" id="first_name" name="first_name" formControlName="first_name">
+	<label for="last_name">Last Name</label>
+	<input type="" id="last_name" name="last_name" formControlName="last_name">
+	<label for="email">email</label>
+	<input type="email" id="email" name="email" formControlName="email">
+	<label for="user_type">Type</label>
+	<select id="user_type" name="user_type" formControlName="user_type">
+		<option value="ADMIN">ADMIN</option>
+		<option value="DRIVER">DRIVER</option>
+	</select>
+	<label for="password">Password</label>
+	<input type="password" id="password" name="password" formControlName="password">
+	<label for="password_repeat">Repeat Password</label>
+	<input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat">
+
+	<button type="submit">Create</button>
+</form>
