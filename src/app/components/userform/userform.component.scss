@@ -9,6 +9,36 @@
 	margin-right: $userform-marign-right;
 	display: inline-block;
 
-	@include card;
+	box-sizing: border-box; 
+	padding: $pd-1;
 
+	@include card;
+}
+
+.userform {
+	&__header {
+		height: $userform-header-close-size;
+
+		&__text {
+			height: $pd-5;
+			
+			position: relative;
+			vertical-align: middle;
+			display: inline-block;
+			
+			color: $text-color;
+			font-size: $userform-header-text-size;
+			line-height: $userform-header-text-size;
+			font-weight: bold;
+		}
+
+		&__close {
+			width: $userform-header-close-size;
+			height: $userform-header-close-size;
+			
+			float: right;
+			
+			background-image: url(../../images/close-24px.svg);
+		}
+	}
 }

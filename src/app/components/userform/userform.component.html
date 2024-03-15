@@ -1,4 +1,13 @@
-<form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+<div class="userform__header">
+	<span class="userform__header__text">Create new user</span>
+	<div class="userform__header__close"></div>
+</div>
+
+<form
+	[formGroup]="createUserForm"
+	(ngSubmit)="onSubmit()"
+	class="userform__form"
+>
 	<label for="id">Username</label>
 	<input type="text" id="id" name="id" formControlName="id">
 	<label for="first_name">First Name</label>
