@@ -20,8 +20,9 @@
 	<p *ngIf="createUserForm.get('last_name')?.hasError('empty') && createUserForm.get('last_name')?.touched">Last Name should not be empty</p>
 	<p *ngIf="createUserForm.get('last_name')?.hasError('hasWrongCharacters') && createUserForm.get('last_name')?.dirty">Incorrect characters in Last Name</p>
 	<label for="email">email</label>
-	<input type="email" id="email" name="email" formControlName="email" mandatory>
+	<input type="email" id="email" name="email" formControlName="email" mandatory email>
 	<p *ngIf="createUserForm.get('email')?.hasError('empty') && createUserForm.get('email')?.touched">Email should not be empty</p>
+	<p *ngIf="createUserForm.get('email')?.hasError('email') && createUserForm.get('email')?.touched">Wrong Email Format</p>
 	<label for="user_type">Type</label>
 	<select id="user_type" name="user_type" formControlName="user_type" mandatory>
 		<option value="ADMIN">ADMIN</option>
