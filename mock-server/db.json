@@ -1,44 +1,81 @@
 {
-	"users": [
-		{
-			"username": "max99",
-			"first_name": "Maxim",
-			"last_name": "Hevorgyan",
-			"email": "h_maxi@gmail.com",
-			"password": "75f823aa1e6927d885ec6f9715677ca6c5a0e580c029c8dc3f1b1ad43880ca9b",
-			"user_type": "DRIVER"
-		},
-		{
-			"username": "j_smith",
-			"first_name": "Jack",
-			"last_name": "Helpert",
-			"email": "jack_helpert_us@gmail.com",
-			"password": "e3d783ce886e9873c567a6fd18dc16fa4eecacebb788ff5ce9d0f14cc20dc15d",
-			"user_type": "DRIVER"
-		},
-		{
-			"username": "julia_melnyk",
-			"first_name": "Julia",
-			"last_name": "Melnyk",
-			"email": "julia.99@gmail.com",
-			"password": "4b9c33dfffaa5b1fe5c88c7f7ff19f139851a4bf59b4b0201a11d311e0cb1237",
-			"user_type": "DRIVER"
-		},
-		{
-			"username": "amazing",
-			"first_name": "Artem",
-			"last_name": "Mazovski",
-			"email": "amazing@gmail.com",
-			"password": "ba1b7a466573cb8e84c26fb58db693bd50a272732e3024a02be3ffbfc917ec2b",
-			"user_type": "ADMIN"
-		},
-		{
-			"username": "pbeesly",
-			"first_name": "Pam",
-			"last_name": "Beesly",
-			"email": "pbeesly@gmail.com",
-			"password": "0a22c78b7b836a41da3bf0815197e090fecab03b77fa2fc12947ae98710ed378",
-			"user_type": "ADMIN"
-		}
-	]
+  "users": [
+    {
+      "username": "max99",
+      "first_name": "Maxim",
+      "last_name": "Hevorgyan",
+      "email": "h_maxi@gmail.com",
+      "password": "75f823aa1e6927d885ec6f9715677ca6c5a0e580c029c8dc3f1b1ad43880ca9b",
+      "user_type": "DRIVER",
+      "id": "890e"
+    },
+    {
+      "username": "j_smith",
+      "first_name": "Jack",
+      "last_name": "Helpert",
+      "email": "jack_helpert_us@gmail.com",
+      "password": "e3d783ce886e9873c567a6fd18dc16fa4eecacebb788ff5ce9d0f14cc20dc15d",
+      "user_type": "DRIVER",
+      "id": "69ae"
+    },
+    {
+      "username": "julia_melnyk",
+      "first_name": "Julia",
+      "last_name": "Melnyk",
+      "email": "julia.99@gmail.com",
+      "password": "4b9c33dfffaa5b1fe5c88c7f7ff19f139851a4bf59b4b0201a11d311e0cb1237",
+      "user_type": "DRIVER",
+      "id": "cf16"
+    },
+    {
+      "username": "amazing",
+      "first_name": "Artem",
+      "last_name": "Mazovski",
+      "email": "amazing@gmail.com",
+      "password": "ba1b7a466573cb8e84c26fb58db693bd50a272732e3024a02be3ffbfc917ec2b",
+      "user_type": "ADMIN",
+      "id": "7a77"
+    },
+    {
+      "username": "pbeesly",
+      "first_name": "Pam",
+      "last_name": "Beesly",
+      "email": "pbeesly@gmail.com",
+      "password": "0a22c78b7b836a41da3bf0815197e090fecab03b77fa2fc12947ae98710ed378",
+      "user_type": "ADMIN",
+      "id": "8e94"
+    },
+    {
+      "id": "590e",
+      "username": "test",
+      "first_name": "Testname",
+      "last_name": "Testlastname",
+      "email": "tt1@gmail.com",
+      "password": "75f823aa1e6927d885ec6f9715688ca6c5a0e580c029c8dc3f1b1ad43880ca9b",
+      "user_type": "DRIVER"
+    },
+    {
+      "id": "20bc",
+      "username": null,
+      "first_name": "Test3",
+      "last_name": "TestTest3",
+      "email": null,
+      "password": null,
+      "user_type": "DRIVER",
+      "user_name": "T3",
+      "user_email": "tt3@gmail.com",
+      "user_password": "00000000000000000",
+      "user_password_repeat": "111111111111111111111"
+    },
+    {
+      "id": "6350",
+      "username": "T4",
+      "first_name": "Test4",
+      "last_name": "Testtest4",
+      "email": "tt4@gmail.com",
+      "password": "12344556",
+      "user_type": "DRIVER",
+      "password_repeat": "3543543543"
+    }
+  ]
 }

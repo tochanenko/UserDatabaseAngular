@@ -1,10 +1,15 @@
 import { UserType } from "./usertype.type";
 
-export interface User {
-	username: String,
-	first_name: String,
-	last_name: String,
-	email: String,
-	password: String,
-	user_type: UserType
+export class User {
+
+	public constructor(init?: Partial<User>) {
+        Object.assign(this, init);
+    }
+
+	public username: String | null | undefined = null;
+	public first_name: String | null | undefined = null;
+	public last_name: String | null | undefined = null;
+	public email: String | null | undefined = null;
+	public password: String | null | undefined = null;
+	public user_type: UserType | null | undefined = null;
 }

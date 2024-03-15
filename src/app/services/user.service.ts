@@ -17,4 +17,10 @@ export class UserService {
       this.baseUrl + '/users', { headers: { Accept: 'application/json' } }
     );
   }
+
+  postUser(user: User): Observable<User> {
+    return this.http.post<User>(
+      this.baseUrl + '/users', user, { headers: { Accept: 'application/json' } }
+    )
+  }
 }
