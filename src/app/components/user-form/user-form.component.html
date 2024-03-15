@@ -9,25 +9,29 @@
 	class="userform__form"
 >
 	<label for="id">Username</label>
-	<input type="text" id="id" name="id" formControlName="id">
+	<input type="text" id="id" name="id" formControlName="id" mandatory>
+	<p *ngIf="createUserForm.get('id')?.hasError('empty') && createUserForm.get('id')?.touched">Username should not be empty</p>
 	<label for="first_name">First Name</label>
-	<input type="text" id="first_name" name="first_name" formControlName="first_name">
+	<input type="text" id="first_name" name="first_name" formControlName="first_name" mandatory>
+	<p *ngIf="createUserForm.get('first_name')?.hasError('empty') && createUserForm.get('first_name')?.touched">First Name should not be empty</p>
 	<label for="last_name">Last Name</label>
-	<input type="" id="last_name" name="last_name" formControlName="last_name">
+	<input type="" id="last_name" name="last_name" formControlName="last_name" mandatory>
+	<p *ngIf="createUserForm.get('last_name')?.hasError('empty') && createUserForm.get('last_name')?.touched">Last Name should not be empty</p>
 	<label for="email">email</label>
-	<input type="email" id="email" name="email" formControlName="email">
+	<input type="email" id="email" name="email" formControlName="email" mandatory>
+	<p *ngIf="createUserForm.get('email')?.hasError('empty') && createUserForm.get('email')?.touched">Email should not be empty</p>
 	<label for="user_type">Type</label>
-	<select id="user_type" name="user_type" formControlName="user_type">
+	<select id="user_type" name="user_type" formControlName="user_type" mandatory>
 		<option value="ADMIN">ADMIN</option>
-		<option value="DRIVER">DRIVER</option>
+		<option value="DRIVER" [selected]="true">DRIVER</option>
 	</select>
 	<label for="password">Password</label>
-	<input type="password" id="password" name="password" formControlName="password" passwordStrength>
+	<input type="password" id="password" name="password" formControlName="password" passwordStrength mandatory>
 	<p *ngIf="createUserForm.get('password')?.hasError('insufficientPasswordLength')">Password must be at least 8 symbols long</p>
 	<p *ngIf="createUserForm.get('password')?.hasError('doesntHaveNumeric')">Password should have at least one number</p>
 	<p *ngIf="createUserForm.get('password')?.hasError('doesntHaveLetters')">Password should have at least one letter</p>
 	<label for="password_repeat">Repeat Password</label>
-	<input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat">
-
+	<input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat" mandatory>
+	<p *ngIf="createUserForm.get('password_repeat')?.touched && createUserForm.get('password')?.value != createUserForm.get('password_repeat')?.value">Passwords should be the same</p>
 	<button type="submit">Create</button>
 </form>

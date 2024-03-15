@@ -87,6 +87,22 @@
       "email": "tt004",
       "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
       "user_type": "ADMIN"
+    },
+    {
+      "id": "T2",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "password": "cff986c250c306ca817ea78003f2083b05600cc19df01d3fa2af158bfb848aec",
+      "user_type": null
+    },
+    {
+      "id": "T2",
+      "first_name": "4234324",
+      "last_name": "23423432",
+      "email": "324234324",
+      "password": "78c2f5733151a5fdc713fdc2b7af11eeffb64299802f3a529195a6fca071319e",
+      "user_type": "ADMIN"
     }
   ]
 }
