@@ -85,6 +85,19 @@ export class UserFormComponent {
     );
   }
 
+  controlEmpty(controlName: string): boolean | null | undefined {
+    if (this.createUserForm.get(controlName) == null) return null;
+    return this.createUserForm.get(controlName)?.hasError('empty')
+      && this.createUserForm.get(controlName)?.touched
+  }
+
+  controlNotEmptyHasError(controlName: string, errorName: string): boolean | null | undefined {
+    if (this.createUserForm.get(controlName) == null) return null;
+    return !this.createUserForm.get(controlName)?.hasError('empty')
+      && this.createUserForm.get(controlName)?.touched
+      && this.createUserForm.get(controlName)?.hasError(errorName)
+  }
+
   private checkFormHasErrors(): Boolean {
     let hasErrors = false;
     Object.keys(this.createUserForm.controls).forEach( (key: string | readonly (string | number)[]) => {
