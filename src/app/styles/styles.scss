@@ -9,6 +9,11 @@ $shadow-blue: 0px 5px 8px #2E8FF029;
 $shadow-blue-hover: 0px 5px 12px #2E8FF077;
 $shadow-blue-active: 0px 2px 6px #2E8FF0AA;
 $shadow-red: 0px 5px 8px #EF7DA029;
+$shadow-red-hover: 0px 5px 12px #EF7DA077;
+$shadow-red-active: 0px 2px 6px #EF7DA0AA;
+$shadow-magenta: 0px 5px 8px #F4468229;
+$shadow-magenta-hover: 0px 5px 12px #F4468277;
+$shadow-magenta-active: 0px 2px 6px #F44682AA;
 
 @mixin card {
 	background-color: $background-color;

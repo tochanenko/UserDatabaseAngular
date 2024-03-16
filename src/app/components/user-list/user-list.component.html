@@ -9,6 +9,8 @@
 	<tr
 		*ngFor="let user of users"
 		class="userstable__row"
+
+		(click)="selectUser(user)"
 	>
 		<td>{{ user.id }}</td>
 		<td>{{ user.first_name }}</td>

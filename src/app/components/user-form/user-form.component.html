@@ -1,5 +1,12 @@
 <div class="userform__header">
-	<span class="userform__header__text">Create new user</span>
+	<span
+		*ngIf="user == null"
+		class="userform__header__text"
+	>Create new user</span>
+	<span
+		*ngIf="user != null"
+		class="userform__header__text"
+	>{{ user.first_name }} {{ user.last_name }}</span>
 	<div class="userform__header__close" (click)="closeForm()"></div>
 </div>
 
@@ -121,7 +128,17 @@
 		<p class="userform__field__error" *ngIf="createUserForm.get('password_repeat')?.touched && createUserForm.get('password')?.value != createUserForm.get('password_repeat')?.value">Passwords should be the same</p>
 	</div>
 
-	<div class="userform__button">
+	<div
+		*ngIf="user == null"
+		class="userform__button"
+	>
 		<button type="submit">Create</button>
+	</div>
+	<div
+		*ngIf="user != null"
+		class="userform__button--spaced"
+	>
+		<button class="button-red" type="submit">Delete</button>
+		<button type="submit">Save</button>
 	</div>
 </form>

@@ -30,14 +30,29 @@ button {
 	font-size: $button-text-size;
 
 	transition: .3s box-shadow;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: $shadow-blue-hover;
+	}
+
+	&:active {
+		filter: brightness(90%);
+		box-shadow: $shadow-blue-active;
+	}
 }
 
-button:hover {
-	cursor: pointer;
-	box-shadow: $shadow-blue-hover;
-}
+.button--red {
+	background-color: $magenta;
+	box-shadow: $shadow-red;
 
-button:active {
-	filter: brightness(90%);
-	box-shadow: $shadow-blue-active;
+	&:hover {
+		cursor: pointer;
+		box-shadow: $shadow-red-hover;
+	}
+
+	&:active {
+		filter: brightness(90%);
+		box-shadow: $shadow-red-active;
+	}
 }

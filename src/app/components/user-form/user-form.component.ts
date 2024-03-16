@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../types/user.class';
 import { PasswordStrengthDirective } from '../../directives/password-strength.directive';
@@ -27,19 +27,19 @@ import { UserType } from '../../types/user-type.type';
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss'
 })
-export class UserFormComponent {
-
+export class UserFormComponent implements OnInit, OnChanges {
+  @Input() user: User | null = null;
   @Output() finished = new EventEmitter<boolean>();
 
   json = JSON;
-  createUserForm = this.formBuilder.group({
-    id: '',
-    first_name: new FormControl({ value: null, disabled: false}),
-    last_name: '',
-    email: '',
+  createUserForm: FormGroup = this.formBuilder.group({
+    id: this.user == null ? '' : this.user.id,
+    first_name: new FormControl({ value: '', disabled: false}),
+    last_name: new FormControl({ value: '', disabled: false}),
+    email: new FormControl({ value: '', disabled: false}),
     user_type: new FormControl({ value: 'DRIVER' as UserType, disabled: false}),
-    password: '',
-    password_repeat: ''
+    password: new FormControl({ value: '', disabled: false}),
+    password_repeat: new FormControl({ value: '', disabled: false})
   });
 
   userWithId$: Observable<User> | null = null;
@@ -49,6 +49,15 @@ export class UserFormComponent {
     private userService: UserService,
     private formBuilder: FormBuilder,
   ) {}
+
+  ngOnInit(): void {
+    this.updateForm();
+  }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.updateForm();
+  }
 
   onSubmit(): void {
     if (this.checkFormHasErrors()) {
@@ -118,6 +127,18 @@ export class UserFormComponent {
 
   closeForm(): void {
     this.finished.emit(true);
+  }
+
+  private updateForm() {
+    if (this.user != null) {
+      this.createUserForm.get('id')?.setValue(this.user.id);
+      this.createUserForm.get('first_name')?.setValue(this.user.first_name);
+      this.createUserForm.get('last_name')?.setValue(this.user.last_name);
+      this.createUserForm.get('email')?.setValue(this.user.email);
+      this.createUserForm.get('user_type')?.setValue(this.user.user_type);
+      this.createUserForm.get('password')?.setValue('');
+      this.createUserForm.get('password_repeat')?.setValue('');
+    }
   }
 
   private checkFormHasErrors(): Boolean {

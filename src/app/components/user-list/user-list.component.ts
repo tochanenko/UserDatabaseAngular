@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../types/user.class';
 import { NgFor } from '@angular/common';
@@ -13,6 +13,8 @@ import { NgFor } from '@angular/common';
 export class UserListComponent implements OnInit {
   users: User[] = [];
 
+  @Output() selectedUser = new EventEmitter<User>();
+
   constructor(
     private userService: UserService,
   ) {}
@@ -25,5 +27,10 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().subscribe((data: User[]) => {
       this.users = data;
     })
+  }
+
+  selectUser(user: User) {
+    console.log("Selected user: " + user.id);
+    this.selectedUser.emit(user);
   }
 }

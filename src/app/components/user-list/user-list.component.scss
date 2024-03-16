@@ -38,6 +38,8 @@
 		background-color: $usertable-row-background-color;
 		transition: .3s background-color;
 
+		cursor: pointer;
+
 		&:hover {
 			background-color: $usertable-row-background-color--hover;
 		}
