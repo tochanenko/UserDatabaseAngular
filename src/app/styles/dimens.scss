@@ -16,9 +16,20 @@ $userform-height: 711px;
 $userform-margin-top: 185px;
 $userform-marign-right: 46px;
 $userform-header-text-size: 16px;
+$userform-error-text-size: 13px;
 $userform-header-close-size: 24px;
+$userform-header-margin-bottom: 16px;
 
 $usertable-row-spacing: 2px;
 $usertable-header-text-size: 13px;
 $usertable-row-text-size: 13px;
 $usertable-width: 1218px;
+
+$textinput-label-text-size: 13px;
+$textinput-field-text-size: 13px;
+
+$textinput-field-label-margin: 3px;
+$textinput-field-margin-bottom: 28px;
+
+$userform-error-text-bottom-position: calc(#{$textinput-field-margin-bottom} - #{$textinput-field-label-margin} - #{$userform-error-text-size});
+$userform-error-text-top-position-old: -10px;

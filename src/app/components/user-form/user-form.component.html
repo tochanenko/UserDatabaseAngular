@@ -6,55 +6,66 @@
 <form
 	[formGroup]="createUserForm"
 	(ngSubmit)="onSubmit()"
-	class="userform__form"
 >
+	<div class="userform__field">
+		<text-input
+			id="id"
+			name="id"
+			formControlName="id"
+			[label]="'Username'"
+			[type]="'text'"
+			[required]="true"
+			mandatory
+		/>
+		<p class="userform__field__error" *ngIf="!createUserForm.get('id')?.hasError('empty') && !(userWithIdError$ | async) as user">User already exists</p>
+		<p class="userform__field__error" *ngIf="controlEmpty('id')">Username should not be empty</p>
+	</div>
 
-	<text-input
-		id="id"
-		name="id"
-		formControlName="id"
-		[label]="'Username'"
-		[type]="'text'"
-		mandatory
-	/>
-	<p *ngIf="!createUserForm.get('id')?.hasError('empty') && !(userWithIdError$ | async) as user">User already exists</p>
-	<p *ngIf="controlEmpty('id')">Username should not be empty</p>
+	<div class="userform__field">
+		<text-input
+			id="first_name"
+			name="first_name"
+			formControlName="first_name"
+			[label]="'First Name'"
+			[type]="'text'"
+			[required]="true"
+			nameCharacters
+			mandatory
+		/>
+		<p class="userform__field__error" *ngIf="controlEmpty('first_name')">First Name should not be empty</p>
+		<p class="userform__field__error" *ngIf="controlNotEmptyHasError('first_name', 'hasWrongCharacters')">Incorrect characters in First Name</p>
+	</div>
+	
+	
+	<div class="userform__field">
+		<text-input
+			id="last_name"
+			name="last_name"
+			formControlName="last_name"
+			[label]="'Last Name'"
+			[type]="'text'"
+			[required]="true"
+			nameCharacters
+			mandatory
+		/>
+		<p class="userform__field__error" *ngIf="controlEmpty('last_name')">First Name should not be empty</p>
+		<p class="userform__field__error" *ngIf="controlNotEmptyHasError('last_name', 'hasWrongCharacters')">Incorrect characters in Last Name</p>
+	</div>
 
-	<text-input
-		id="first_name"
-		name="first_name"
-		formControlName="first_name"
-		[label]="'First Name'"
-		[type]="'text'"
-		nameCharacters
-		mandatory
-	/>
-	<p *ngIf="controlEmpty('first_name')">First Name should not be empty</p>
-	<p *ngIf="controlNotEmptyHasError('first_name', 'hasWrongCharacters')">Incorrect characters in First Name</p>
-
-	<text-input
-		id="last_name"
-		name="last_name"
-		formControlName="last_name"
-		[label]="'Last Name'"
-		[type]="'text'"
-		nameCharacters
-		mandatory
-	/>
-	<p *ngIf="controlEmpty('last_name')">First Name should not be empty</p>
-	<p *ngIf="controlNotEmptyHasError('last_name', 'hasWrongCharacters')">Incorrect characters in Last Name</p>
-
-	<text-input
-		id="email"
-		name="email"
-		formControlName="email"
-		[label]="'Email'"
-		[type]="'email'"
-		email
-		mandatory
-	/>
-	<p *ngIf="controlEmpty('email')">Email should not be empty</p>
-	<p *ngIf="controlNotEmptyHasError('email', 'email')">Wrong Email Format</p>
+	<div class="userform__field">
+		<text-input
+			id="email"
+			name="email"
+			formControlName="email"
+			[label]="'Email'"
+			[type]="'email'"
+			[required]="true"
+			email
+			mandatory
+		/>
+		<p class="userform__field__error" *ngIf="controlEmpty('email')">Email should not be empty</p>
+		<p class="userform__field__error" *ngIf="controlNotEmptyHasError('email', 'email')">Wrong Email Format</p>
+	</div>
 
 	<!-- TODO Implement Dropdown -->
 
@@ -66,29 +77,35 @@
 		</select>
 	-->
 
-	<text-input
-		id="password"
-		name="password"
-		formControlName="password"
-		[label]="'Password'"
-		[type]="'password'"
-		passwordStrength
-		mandatory
-	/>
-	<p *ngIf="controlEmpty('password')">Password should not be empty</p>
-	<p *ngIf="controlNotEmptyHasError('password', 'insufficientPasswordLength')">Password must be at least 8 symbols long</p>
-	<p *ngIf="controlNotEmptyHasError('password', 'doesntHaveNumeric')">Password should have at least one number</p>
-	<p *ngIf="controlNotEmptyHasError('password', 'doesntHaveLetters')">Password should have at least one letter</p>
+	<div class="userform__field">
+		<text-input
+			id="password"
+			name="password"
+			formControlName="password"
+			[label]="'Password'"
+			[type]="'password'"
+			[required]="true"
+			passwordStrength
+			mandatory
+		/>
+		<p class="userform__field__error" *ngIf="controlEmpty('password')">Password should not be empty</p>
+		<p class="userform__field__error" *ngIf="controlNotEmptyHasError('password', 'insufficientPasswordLength')">Password must be at least 8 symbols long</p>
+		<p class="userform__field__error" *ngIf="controlNotEmptyHasError('password', 'doesntHaveNumeric')">Password should have at least one number</p>
+		<p class="userform__field__error" *ngIf="controlNotEmptyHasError('password', 'doesntHaveLetters')">Password should have at least one letter</p>
+	</div>
 
-	<text-input
-		id="password_repeat"
-		name="password_repeat"
-		formControlName="password_repeat"
-		[label]="'Repeat password'"
-		[type]="'password'"
-		email
-		mandatory
-	/>
-	<p *ngIf="createUserForm.get('password_repeat')?.touched && createUserForm.get('password')?.value != createUserForm.get('password_repeat')?.value">Passwords should be the same</p>
+	<div class="userform__field">
+		<text-input
+			id="password_repeat"
+			name="password_repeat"
+			formControlName="password_repeat"
+			[label]="'Repeat password'"
+			[type]="'password'"
+			[required]="true"
+			email
+			mandatory
+		/>
+		<p class="userform__field__error" *ngIf="createUserForm.get('password_repeat')?.touched && createUserForm.get('password')?.value != createUserForm.get('password_repeat')?.value">Passwords should be the same</p>
+	</div>
 	<button type="submit">Create</button>
 </form>

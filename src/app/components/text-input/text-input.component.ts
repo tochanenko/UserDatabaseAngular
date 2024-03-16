@@ -35,6 +35,7 @@ export class TextInputComponent implements ControlValueAccessor, Validator {
   @Input() label: string = '';
   @Input() image: string = '';
   @Input() type: string = '';
+  @Input() required: boolean = false;
 
   control: FormControl = new FormControl<string>('');
   destroyRef: DestroyRef = inject(DestroyRef);

@@ -1,12 +1,12 @@
-<div class="">
-	<label>{{ label }}</label>
+<div class="textinput">
+	<label class="textinput__label">{{ label }}<span *ngIf="required">*</span></label>
 	<input
 		type="text"
 		[formControl]="control"
 		(blur)="onTouched()"
 		[type]="type"
 
-		class=""
+		class="textinput__field"
 		[formControl]="control"
 		[attr.placeholder]="label"
 		[disabled]="disabled"
