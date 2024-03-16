@@ -1,0 +1,29 @@
+<div class="textinput">
+	<label [ngClass]="type == 'email' ? 'textinput__label email' : 'textinput__label'">{{ label }}<span *ngIf="required">*</span></label>
+	<input
+		*ngIf="type != 'dropdown'"
+
+		[formControl]="control"
+		(blur)="onTouched()"
+		[type]="type"
+
+		[ngClass]="hasErrors ? 'textinput__field error' : 'textinput__field'"
+
+		[formControl]="control"
+		[attr.placeholder]="label"
+		[disabled]="disabled"
+	/>
+
+	<select
+		*ngIf="type === 'dropdown'"
+
+		[formControl]="control"
+		(blur)="onTouched()"
+
+		class="textinput__field"
+		[disabled]="disabled"
+	>
+		<option value="ADMIN">Administrator</option>
+		<option value="DRIVER" [selected]="true">Driver</option>
+	</select>
+</div>

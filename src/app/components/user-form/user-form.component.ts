@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { User } from '../../interfaces/user.interface';
+import { User } from '../../types/user.class';
 import { PasswordStrengthDirective } from '../../directives/password-strength.directive';
 import { CommonModule, NgIf } from '@angular/common';
 import { MandatoryDirective } from '../../directives/mandatory.directive';
@@ -9,6 +9,8 @@ import { NameCharactersDirective } from '../../directives/name-characters.direct
 
 import sha from 'sha.js';
 import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
+import { TextInputComponent } from '../text-input/text-input.component';
+import { UserType } from '../../types/user-type.type';
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -19,18 +21,20 @@ import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
     MandatoryDirective,
     NameCharactersDirective,
     NgIf,
-    CommonModule
+    CommonModule,
+    TextInputComponent,
   ],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent {
+  json = JSON;
   createUserForm = this.formBuilder.group({
     id: '',
-    first_name: '',
+    first_name: new FormControl({ value: null, disabled: false}),
     last_name: '',
     email: '',
-    user_type: new FormControl(null),
+    user_type: new FormControl({ value: 'DRIVER' as UserType, disabled: false}),
     password: '',
     password_repeat: ''
   });
@@ -80,6 +84,31 @@ export class UserFormComponent {
       ignoreElements(),
       catchError((err) => of(err))
     );
+  }
+
+  controlEmpty(controlName: string): boolean | null | undefined {
+    if (this.createUserForm.get(controlName) == null) return null;
+    return this.createUserForm.get(controlName)?.hasError('empty')
+      && this.createUserForm.get(controlName)?.touched
+  }
+
+  controlNotEmptyHasError(controlName: string, errorName: string): boolean | null | undefined {
+    if (this.createUserForm.get(controlName) == null) return null;
+    return !this.createUserForm.get(controlName)?.hasError('empty')
+      && this.createUserForm.get(controlName)?.touched
+      && this.createUserForm.get(controlName)?.hasError(errorName)
+  }
+
+  hasErrors(controlName: string): boolean {
+    let touched: boolean = this.createUserForm.get(controlName)!.touched;
+    let errors: ValidationErrors | null = this.createUserForm.get(controlName)!.errors;
+
+    if (controlName == 'password_repeat') {
+      return touched && this.createUserForm.get('password')!.value != this.createUserForm.get('password_repeat')!.value;
+    }
+
+    if (errors == null) return false;
+    return touched && (Object.keys(errors).length > 0);
   }
 
   private checkFormHasErrors(): Boolean {
