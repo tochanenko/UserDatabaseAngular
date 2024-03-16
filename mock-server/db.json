@@ -55,6 +55,14 @@
       "email": "mo@mo.mo",
       "password": "b3f14ab8ccc8df9936d773ee5f1944f9b95feb059e38eb61422a558a62f8d26b",
       "user_type": "DRIVER"
+    },
+    {
+      "id": "mp",
+      "first_name": "mo",
+      "last_name": "mo",
+      "email": "mo@mo.mo",
+      "password": "578e1a6629998224384d8c95ec421a28f328466303b5875776838724d3b2c416",
+      "user_type": "DRIVER"
     }
   ]
 }

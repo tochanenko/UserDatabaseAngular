@@ -51,7 +51,6 @@ export class UserFormComponent {
   ) {}
 
   onSubmit(): void {
-    console.log(JSON.stringify(this.createUserForm.value, null, 4));
     if (this.checkFormHasErrors()) {
       // TODO Implement Showing Error Message
       console.log("FIX ALL ERRORS!");
@@ -60,7 +59,7 @@ export class UserFormComponent {
         mergeMap( (users: User[]) => {
           let existingUser: User | undefined = users.find((user: User) => user.id == this.createUserForm.value.id);
           if (existingUser != null) {
-            return of(existingUser);
+            return of(null);
           } else {
             let newUser = new User(
               this.createUserForm.value.id,
@@ -74,10 +73,11 @@ export class UserFormComponent {
             return this.userService.postUser(newUser);
           }
         })
-      ).subscribe( (user: User) => {
+      ).subscribe( (user: User | null) => {
+        if (user != null) {
+          this.closeForm();
+        }
         // TODO Implement Success / Error Message
-        console.log(JSON.stringify(user, null, 4));
-        this.closeForm();
       });
     }
   }
