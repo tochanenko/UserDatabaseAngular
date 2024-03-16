@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormsModule, NgModel, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../interfaces/user.interface';
 import { PasswordStrengthDirective } from '../../directives/password-strength.directive';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { MandatoryDirective } from '../../directives/mandatory.directive';
 import { NameCharactersDirective } from '../../directives/name-characters.directive';
 
 import sha from 'sha.js';
+import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -18,13 +19,12 @@ import sha from 'sha.js';
     MandatoryDirective,
     NameCharactersDirective,
     NgIf,
+    CommonModule
   ],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent {
-  // TODO Implement user Form Validation
-
   createUserForm = this.formBuilder.group({
     id: '',
     first_name: '',
@@ -33,7 +33,10 @@ export class UserFormComponent {
     user_type: new FormControl(null),
     password: '',
     password_repeat: ''
-  })
+  });
+
+  userWithId$: Observable<User> | null = null;
+  userWithIdError$: Observable<User> | null = null;
 
   constructor(
     private userService: UserService,
@@ -41,29 +44,48 @@ export class UserFormComponent {
   ) {}
 
   onSubmit(): void {
-    console.log(this.checkFormHasErrors());
     if (this.checkFormHasErrors()) {
+      // TODO Implement Showing Error Message
       console.log("FIX ALL ERRORS!");
     } else {
-      let newUser = new User(
-        this.createUserForm.value.id,
-        this.createUserForm.value.first_name,
-        this.createUserForm.value.last_name,
-        this.createUserForm.value.email,
-        sha('sha256').update(this.createUserForm.value.password!).digest('hex'),
-        this.createUserForm.value.user_type
-      );
-    
-      this.userService.postUser(newUser).subscribe( (user) => console.log(JSON.stringify(user, null, 4)));
-      this.createUserForm.reset();
+      this.userService.getUser(this.createUserForm.value.id!).pipe(
+        mergeMap( (user: User | null) => {
+          if (user == null) {
+            let newUser = new User(
+              this.createUserForm.value.id,
+              this.createUserForm.value.first_name,
+              this.createUserForm.value.last_name,
+              this.createUserForm.value.email,
+              sha('sha256').update(this.createUserForm.value.password!).digest('hex'),
+              this.createUserForm.value.user_type
+            );
+
+            this.createUserForm.reset();
+          
+            return this.userService.postUser(newUser);
+          } else { return of({}) }
+        })
+      ).subscribe( (user: any) => {
+        // TODO Implement Showing Error Message
+        console.log(JSON.stringify(user, null, 4));
+      });
+      
     }
+  }
+
+  checkUser(event: Event) {
+    let newUserId = (event.target as HTMLInputElement).value;
+    this.userWithId$ = this.userService.getUser(newUserId);
+    this.userWithIdError$ = this.userWithId$.pipe(
+      ignoreElements(),
+      catchError((err) => of(err))
+    );
   }
 
   private checkFormHasErrors(): Boolean {
     let hasErrors = false;
     Object.keys(this.createUserForm.controls).forEach( (key: string | readonly (string | number)[]) => {
       if (this.createUserForm.get(key)?.errors != null) hasErrors = true;
-      console.log(key + " - " + JSON.stringify(this.createUserForm.get(key)?.errors, null, 4));
     });
     return hasErrors;
   }

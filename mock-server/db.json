@@ -97,11 +97,43 @@
       "user_type": null
     },
     {
-      "id": "T2",
-      "first_name": "4234324",
-      "last_name": "23423432",
-      "email": "324234324",
-      "password": "78c2f5733151a5fdc713fdc2b7af11eeffb64299802f3a529195a6fca071319e",
+      "id": "sldfjds12",
+      "first_name": "sdfsdfsdf",
+      "last_name": "sdfds",
+      "email": "sdfs@j.co",
+      "password": "17f80754644d33ac685b0842a402229adbb43fc9312f7bdf36ba24237a1f1ffb",
+      "user_type": "ADMIN"
+    },
+    {
+      "id": "T003",
+      "first_name": "Test",
+      "last_name": "Test",
+      "email": "tt003@gmail.com",
+      "password": "daaad6e5604e8e17bd9f108d91e26afe6281dac8fda0091040a7a6d7bd9b43b5",
+      "user_type": "ADMIN"
+    },
+    {
+      "id": "3223",
+      "first_name": "sdfsdfs",
+      "last_name": "sdfsdfdsfd",
+      "email": "sdfsdfsdfds@ljfds.co",
+      "password": "6930dda8d7cc63896916a8104dcd17691cf24345c16dcc108e528ca3c1105c81",
+      "user_type": "ADMIN"
+    },
+    {
+      "id": "T003",
+      "first_name": "Changed",
+      "last_name": "Lalala",
+      "email": "lsdfs@ld.co",
+      "password": "6930dda8d7cc63896916a8104dcd17691cf24345c16dcc108e528ca3c1105c81",
+      "user_type": "ADMIN"
+    },
+    {
+      "id": "T003",
+      "first_name": "Updated",
+      "last_name": "updated",
+      "email": "uu222@kd.c",
+      "password": "daaad6e5604e8e17bd9f108d91e26afe6281dac8fda0091040a7a6d7bd9b43b5",
       "user_type": "ADMIN"
     }
   ]

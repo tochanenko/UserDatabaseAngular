@@ -9,7 +9,8 @@
 	class="userform__form"
 >
 	<label for="id">Username</label>
-	<input type="text" id="id" name="id" formControlName="id" mandatory>
+	<input type="text" id="id" name="id" formControlName="id" mandatory (change)="checkUser($event)">
+	<p *ngIf="!createUserForm.get('id')?.hasError('empty') && !(userWithIdError$ | async) as user">User already exists</p>
 	<p *ngIf="createUserForm.get('id')?.hasError('empty') && createUserForm.get('id')?.touched">Username should not be empty</p>
 	<label for="first_name">First Name</label>
 	<input type="text" id="first_name" name="first_name" formControlName="first_name" mandatory nameCharacters>
