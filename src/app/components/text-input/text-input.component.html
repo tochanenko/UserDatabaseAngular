@@ -1,8 +1,12 @@
 <div class="">
 	<label>{{ label }}</label>
 	<input
+		type="text"
+		[formControl]="control"
+
 		class=""
 		[formControl]="control"
 		[attr.placeholder]="label"
-	>
+		[disabled]="disabled"
+	/>
 </div>

@@ -10,9 +10,16 @@
 >
 
 	<text-input
+		id="first_name"
+		name="first_name"
+		formControlName="first_name"
 		[label]="'CustomInput'"
-		required
+		nameCharacters
 	/>
+
+	<p>Value: "{{ createUserForm.get('first_name')?.value}}"</p>
+
+	<p *ngIf="createUserForm.get('first_name')?.hasError('hasWrongCharacters')">{{json.stringify(createUserForm.get('first_name')?.errors)}}</p>
 
 	<!--
 	<label for="id">Username</label>

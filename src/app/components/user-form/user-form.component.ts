@@ -27,9 +27,10 @@ import { TextInputComponent } from '../text-input/text-input.component';
   styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent {
+  json = JSON;
   createUserForm = this.formBuilder.group({
     id: '',
-    first_name: '',
+    first_name: new FormControl({ value: '', disabled: false}),
     last_name: '',
     email: '',
     user_type: new FormControl(null),
