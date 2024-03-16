@@ -1,6 +1,7 @@
 $border-radius: 6px;
 
 $pd-05: 31px;
+$pd-07: 28px;
 $pd-1: 26px;
 $pd-2: 22px;
 $pd-3: 21px;
@@ -30,6 +31,7 @@ $textinput-field-text-size: 13px;
 
 $textinput-field-label-margin: 3px;
 $textinput-field-margin-bottom: 28px;
+$textinput-email-icon-size: 24px;
 
 $userform-error-text-bottom-position: calc(#{$textinput-field-margin-bottom} - #{$textinput-field-label-margin} - #{$userform-error-text-size});
 $userform-error-text-top-position-old: -10px;

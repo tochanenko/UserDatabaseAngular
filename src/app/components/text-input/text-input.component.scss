@@ -11,6 +11,20 @@
 
 		color: $text-color;
 		font-size: $textinput-label-text-size;
+
+		&.email::before {
+			content: ' ';
+			width: $textinput-email-icon-size;
+			height: $textinput-email-icon-size;
+
+			display:block;
+			position: absolute;
+
+			top: $pd-07;
+			left: $pd-5;
+			
+			background-image: url('../../images/email-24px.svg');
+		}
 	}
 
 	&__field {
@@ -35,8 +49,18 @@
 
 		&:active,
 		&:focus {
-			outline: 1px solid $blue;
+			outline: $border-blue;
 			box-shadow: $blue-shadow;
+		}
+
+		&[type="email"] {
+			padding-left: 46px;
+		}
+
+		&.error {
+			outline: $border-red;
+			box-shadow: $red-shadow;
+			color: $red;
 		}
 	}
 }

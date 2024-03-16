@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../types/user.class';
 import { PasswordStrengthDirective } from '../../directives/password-strength.directive';
@@ -96,6 +96,18 @@ export class UserFormComponent {
     return !this.createUserForm.get(controlName)?.hasError('empty')
       && this.createUserForm.get(controlName)?.touched
       && this.createUserForm.get(controlName)?.hasError(errorName)
+  }
+
+  hasErrors(controlName: string): boolean {
+    let touched: boolean = this.createUserForm.get(controlName)!.touched;
+    let errors: ValidationErrors | null = this.createUserForm.get(controlName)!.errors;
+
+    if (controlName == 'password_repeat') {
+      return touched && this.createUserForm.get('password')!.value != this.createUserForm.get('password_repeat')!.value;
+    }
+
+    if (errors == null) return false;
+    return touched && (Object.keys(errors).length > 0);
   }
 
   private checkFormHasErrors(): Boolean {

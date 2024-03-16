@@ -1,10 +1,12 @@
 <div class="textinput">
-	<label class="textinput__label">{{ label }}<span *ngIf="required">*</span></label>
+	<label [ngClass]="type == 'email' ? 'textinput__label email' : 'textinput__label'">{{ label }}<span *ngIf="required">*</span></label>
 	<input
 		type="text"
 		[formControl]="control"
 		(blur)="onTouched()"
 		[type]="type"
+
+		[ngClass]="hasErrors ? 'textinput__field error' : 'textinput__field'"
 
 		class="textinput__field"
 		[formControl]="control"

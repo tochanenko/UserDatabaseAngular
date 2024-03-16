@@ -15,6 +15,10 @@
 			[label]="'Username'"
 			[type]="'text'"
 			[required]="true"
+			[hasErrors]="
+				(!createUserForm.get('id')!.hasError('empty') && !(userWithIdError$ | async))
+				|| controlEmpty('id')!
+				"
 			mandatory
 		/>
 		<p class="userform__field__error" *ngIf="!createUserForm.get('id')?.hasError('empty') && !(userWithIdError$ | async) as user">User already exists</p>
@@ -29,6 +33,7 @@
 			[label]="'First Name'"
 			[type]="'text'"
 			[required]="true"
+			[hasErrors]="hasErrors('first_name')"
 			nameCharacters
 			mandatory
 		/>
@@ -45,6 +50,7 @@
 			[label]="'Last Name'"
 			[type]="'text'"
 			[required]="true"
+			[hasErrors]="hasErrors('last_name')"
 			nameCharacters
 			mandatory
 		/>
@@ -60,6 +66,7 @@
 			[label]="'Email'"
 			[type]="'email'"
 			[required]="true"
+			[hasErrors]="hasErrors('email')"
 			email
 			mandatory
 		/>
@@ -85,6 +92,7 @@
 			[label]="'Password'"
 			[type]="'password'"
 			[required]="true"
+			[hasErrors]="hasErrors('password')"
 			passwordStrength
 			mandatory
 		/>
@@ -102,7 +110,7 @@
 			[label]="'Repeat password'"
 			[type]="'password'"
 			[required]="true"
-			email
+			[hasErrors]="hasErrors('password_repeat')"
 			mandatory
 		/>
 		<p class="userform__field__error" *ngIf="createUserForm.get('password_repeat')?.touched && createUserForm.get('password')?.value != createUserForm.get('password_repeat')?.value">Passwords should be the same</p>

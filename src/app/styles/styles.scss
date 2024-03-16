@@ -2,8 +2,11 @@
 @import 'dimens.scss';
 
 $border-gray: 1px solid $border-color;
+$border-red: 1px solid $red;
+$border-blue: 1px solid $blue;
 $shadow: 0px 0px 30px #523F690D;
 $blue-shadow: 0px 5px 8px #2E8FF029;
+$red-shadow: 0px 5px 8px #EF7DA029;
 
 @mixin card {
 	background-color: $background-color;

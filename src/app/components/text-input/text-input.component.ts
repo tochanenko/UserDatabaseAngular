@@ -1,6 +1,6 @@
-import { Component, DestroyRef, Input, forwardRef, inject } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors, Validator } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { Component, DestroyRef, Injector, Input, OnChanges, OnInit, SimpleChanges, forwardRef, inject } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, NgControl, ReactiveFormsModule, ValidationErrors, Validator } from '@angular/forms';
+import { CommonModule, NgIf } from '@angular/common';
 import { debounceTime, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -9,7 +9,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    CommonModule
   ],
   templateUrl: './text-input.component.html',
   styleUrl: './text-input.component.scss',
@@ -26,7 +27,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     }
   ]
 })
-export class TextInputComponent implements ControlValueAccessor, Validator {
+export class TextInputComponent implements ControlValueAccessor, Validator, OnInit {
   // TODO Remove before deploy
   @Input() debug: boolean = false;
   json = JSON;
@@ -36,6 +37,7 @@ export class TextInputComponent implements ControlValueAccessor, Validator {
   @Input() image: string = '';
   @Input() type: string = '';
   @Input() required: boolean = false;
+  @Input() hasErrors: boolean = false;
 
   control: FormControl = new FormControl<string>('');
   destroyRef: DestroyRef = inject(DestroyRef);
@@ -45,8 +47,8 @@ export class TextInputComponent implements ControlValueAccessor, Validator {
 
   onChange = (text: string) => {}
   onTouched = () => {}
-
   
+
   writeValue(text: string): void {
     this.control.setValue(text, { emitEvent: false });
   }
