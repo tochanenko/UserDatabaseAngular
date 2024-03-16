@@ -30,7 +30,7 @@ export class UserFormComponent {
   json = JSON;
   createUserForm = this.formBuilder.group({
     id: '',
-    first_name: new FormControl({ value: '', disabled: false}),
+    first_name: new FormControl({ value: null, disabled: false}),
     last_name: '',
     email: '',
     user_type: new FormControl(null),

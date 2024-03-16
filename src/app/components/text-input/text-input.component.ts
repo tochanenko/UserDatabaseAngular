@@ -1,4 +1,4 @@
-import { Component, DestroyRef, EventEmitter, Input, Output, forwardRef, inject } from '@angular/core';
+import { Component, DestroyRef, Input, forwardRef, inject } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors, Validator } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { debounceTime, tap } from 'rxjs';
@@ -27,10 +27,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ]
 })
 export class TextInputComponent implements ControlValueAccessor, Validator {
+  // TODO Remove before deploy
+  @Input() debug: boolean = false;
+  json = JSON;
+  // TODO
+  
   @Input() label: String = '';
   @Input() image: String = '';
-  
-  @Output() changedValue = new EventEmitter<String>();
 
   control: FormControl = new FormControl<string>('');
   destroyRef: DestroyRef = inject(DestroyRef);

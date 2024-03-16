@@ -3,10 +3,17 @@
 	<input
 		type="text"
 		[formControl]="control"
+		(blur)="onTouched()"
 
 		class=""
 		[formControl]="control"
 		[attr.placeholder]="label"
 		[disabled]="disabled"
 	/>
+
+	<!-- TODO Remove before deploy-->
+	<div *ngIf="debug">
+		<p>Touched: {{ control.touched }}</p>
+	</div>
+	<!-- TODO -->
 </div>

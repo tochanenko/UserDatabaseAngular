@@ -13,13 +13,12 @@
 		id="first_name"
 		name="first_name"
 		formControlName="first_name"
-		[label]="'CustomInput'"
+		[label]="'First Name'"
 		nameCharacters
+		mandatory
 	/>
-
-	<p>Value: "{{ createUserForm.get('first_name')?.value}}"</p>
-
-	<p *ngIf="createUserForm.get('first_name')?.hasError('hasWrongCharacters')">{{json.stringify(createUserForm.get('first_name')?.errors)}}</p>
+	<p *ngIf="createUserForm.get('first_name')?.hasError('empty') && createUserForm.get('first_name')?.touched">First Name should not be empty</p>
+	<p *ngIf="createUserForm.get('first_name')?.hasError('hasWrongCharacters') && createUserForm.get('first_name')?.touched">Incorrect characters in First Name</p>
 
 	<!--
 	<label for="id">Username</label>
