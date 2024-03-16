@@ -10,6 +10,7 @@ import { NameCharactersDirective } from '../../directives/name-characters.direct
 import sha from 'sha.js';
 import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
 import { TextInputComponent } from '../text-input/text-input.component';
+import { UserType } from '../../types/user-type.type';
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -33,7 +34,7 @@ export class UserFormComponent {
     first_name: new FormControl({ value: null, disabled: false}),
     last_name: '',
     email: '',
-    user_type: new FormControl(null),
+    user_type: new FormControl({ value: 'DRIVER' as UserType, disabled: false}),
     password: '',
     password_repeat: ''
   });

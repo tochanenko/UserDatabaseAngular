@@ -74,15 +74,19 @@
 		<p class="userform__field__error" *ngIf="controlNotEmptyHasError('email', 'email')">Wrong Email Format</p>
 	</div>
 
-	<!-- TODO Implement Dropdown -->
+	<!-- TODO Implement Dropdown Component -->
 
-	<!--
-		<label for="user_type">Type</label>
-		<select id="user_type" name="user_type" formControlName="user_type" mandatory>
-			<option value="ADMIN">ADMIN</option>
-			<option value="DRIVER" [selected]="true">DRIVER</option>
-		</select>
-	-->
+	<div class="userform__field">
+		<text-input
+			id="user_type"
+			name="user_type"
+			formControlName="user_type"
+			[label]="'Type'"
+			[type]="'dropdown'"
+			[required]="true"
+			mandatory
+		/>
+	</div>
 
 	<div class="userform__field">
 		<text-input

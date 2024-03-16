@@ -28,11 +28,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   ]
 })
 export class TextInputComponent implements ControlValueAccessor, Validator, OnInit {
-  // TODO Remove before deploy
-  @Input() debug: boolean = false;
-  json = JSON;
-  // TODO
-  
   @Input() label: string = '';
   @Input() image: string = '';
   @Input() type: string = '';

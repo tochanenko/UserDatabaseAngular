@@ -1,22 +1,29 @@
 <div class="textinput">
 	<label [ngClass]="type == 'email' ? 'textinput__label email' : 'textinput__label'">{{ label }}<span *ngIf="required">*</span></label>
 	<input
-		type="text"
+		*ngIf="type != 'dropdown'"
+
 		[formControl]="control"
 		(blur)="onTouched()"
 		[type]="type"
 
 		[ngClass]="hasErrors ? 'textinput__field error' : 'textinput__field'"
 
-		class="textinput__field"
 		[formControl]="control"
 		[attr.placeholder]="label"
 		[disabled]="disabled"
 	/>
 
-	<!-- TODO Remove before deploy-->
-	<div *ngIf="debug">
-		<p>Touched: {{ control.touched }}</p>
-	</div>
-	<!-- TODO -->
+	<select
+		*ngIf="type === 'dropdown'"
+
+		[formControl]="control"
+		(blur)="onTouched()"
+
+		class="textinput__field"
+		[disabled]="disabled"
+	>
+		<option value="ADMIN">Administrator</option>
+		<option value="DRIVER" [selected]="true">Driver</option>
+	</select>
 </div>
