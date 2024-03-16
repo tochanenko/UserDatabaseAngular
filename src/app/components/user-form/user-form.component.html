@@ -8,6 +8,13 @@
 	(ngSubmit)="onSubmit()"
 	class="userform__form"
 >
+
+	<text-input
+		[label]="'CustomInput'"
+		required
+	/>
+
+	<!--
 	<label for="id">Username</label>
 	<input type="text" id="id" name="id" formControlName="id" mandatory (change)="checkUser($event)">
 	<p *ngIf="!createUserForm.get('id')?.hasError('empty') && !(userWithIdError$ | async) as user">User already exists</p>
@@ -38,4 +45,5 @@
 	<input type="password" id="password_repeat" name="password_repeat" formControlName="password_repeat" mandatory>
 	<p *ngIf="createUserForm.get('password_repeat')?.touched && createUserForm.get('password')?.value != createUserForm.get('password_repeat')?.value">Passwords should be the same</p>
 	<button type="submit">Create</button>
+-->
 </form>

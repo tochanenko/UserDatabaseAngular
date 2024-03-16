@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-import { User } from '../../interfaces/user.interface';
+import { User } from '../../types/user.class';
 import { PasswordStrengthDirective } from '../../directives/password-strength.directive';
 import { CommonModule, NgIf } from '@angular/common';
 import { MandatoryDirective } from '../../directives/mandatory.directive';
@@ -9,6 +9,7 @@ import { NameCharactersDirective } from '../../directives/name-characters.direct
 
 import sha from 'sha.js';
 import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
+import { TextInputComponent } from '../text-input/text-input.component';
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -19,7 +20,8 @@ import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
     MandatoryDirective,
     NameCharactersDirective,
     NgIf,
-    CommonModule
+    CommonModule,
+    TextInputComponent,
   ],
   templateUrl: './user-form.component.html',
   styleUrl: './user-form.component.scss'
