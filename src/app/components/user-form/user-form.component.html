@@ -14,6 +14,7 @@
 		name="id"
 		formControlName="id"
 		[label]="'Username'"
+		[type]="'text'"
 		mandatory
 	/>
 	<p *ngIf="!createUserForm.get('id')?.hasError('empty') && !(userWithIdError$ | async) as user">User already exists</p>
@@ -24,6 +25,7 @@
 		name="first_name"
 		formControlName="first_name"
 		[label]="'First Name'"
+		[type]="'text'"
 		nameCharacters
 		mandatory
 	/>
@@ -35,6 +37,7 @@
 		name="last_name"
 		formControlName="last_name"
 		[label]="'Last Name'"
+		[type]="'text'"
 		nameCharacters
 		mandatory
 	/>
@@ -46,6 +49,7 @@
 		name="email"
 		formControlName="email"
 		[label]="'Email'"
+		[type]="'email'"
 		email
 		mandatory
 	/>
@@ -67,18 +71,21 @@
 		name="password"
 		formControlName="password"
 		[label]="'Password'"
+		[type]="'password'"
 		passwordStrength
 		mandatory
 	/>
-	<p *ngIf="createUserForm.get('password')?.hasError('insufficientPasswordLength')">Password must be at least 8 symbols long</p>
-	<p *ngIf="createUserForm.get('password')?.hasError('doesntHaveNumeric')">Password should have at least one number</p>
-	<p *ngIf="createUserForm.get('password')?.hasError('doesntHaveLetters')">Password should have at least one letter</p>
+	<p *ngIf="controlEmpty('password')">Password should not be empty</p>
+	<p *ngIf="controlNotEmptyHasError('password', 'insufficientPasswordLength')">Password must be at least 8 symbols long</p>
+	<p *ngIf="controlNotEmptyHasError('password', 'doesntHaveNumeric')">Password should have at least one number</p>
+	<p *ngIf="controlNotEmptyHasError('password', 'doesntHaveLetters')">Password should have at least one letter</p>
 
 	<text-input
 		id="password_repeat"
 		name="password_repeat"
 		formControlName="password_repeat"
 		[label]="'Repeat password'"
+		[type]="'password'"
 		email
 		mandatory
 	/>
