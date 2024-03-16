@@ -1,6 +1,6 @@
 <div class="userform__header">
 	<span class="userform__header__text">Create new user</span>
-	<div class="userform__header__close"></div>
+	<div class="userform__header__close" (click)="closeForm()"></div>
 </div>
 
 <form
@@ -16,12 +16,13 @@
 			[type]="'text'"
 			[required]="true"
 			[hasErrors]="
-				(!createUserForm.get('id')!.hasError('empty') && !(userWithIdError$ | async))
+				(!createUserForm.get('id')!.hasError('empty') && ((userWithIdError$ | async) == null)) && createUserForm.get('id')?.touched
 				|| controlEmpty('id')!
 				"
+			(change)="checkUser($event)"
 			mandatory
 		/>
-		<p class="userform__field__error" *ngIf="!createUserForm.get('id')?.hasError('empty') && !(userWithIdError$ | async) as user">User already exists</p>
+		<p class="userform__field__error" *ngIf="!createUserForm.get('id')?.hasError('empty') && ((userWithIdError$ | async) == null) && createUserForm.get('id')?.touched">User already exists</p>
 		<p class="userform__field__error" *ngIf="controlEmpty('id')">Username should not be empty</p>
 	</div>
 
@@ -119,5 +120,8 @@
 		/>
 		<p class="userform__field__error" *ngIf="createUserForm.get('password_repeat')?.touched && createUserForm.get('password')?.value != createUserForm.get('password_repeat')?.value">Passwords should be the same</p>
 	</div>
-	<button type="submit">Create</button>
+
+	<div class="userform__button">
+		<button type="submit">Create</button>
+	</div>
 </form>

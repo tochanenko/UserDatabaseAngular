@@ -50,7 +50,7 @@
 		&:active,
 		&:focus {
 			outline: $border-blue;
-			box-shadow: $blue-shadow;
+			box-shadow: $shadow-blue;
 		}
 
 		&[type="email"] {
@@ -59,7 +59,7 @@
 
 		&.error {
 			outline: $border-red;
-			box-shadow: $red-shadow;
+			box-shadow: $shadow-red;
 			color: $red;
 		}
 	}

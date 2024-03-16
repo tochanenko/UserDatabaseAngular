@@ -3,11 +3,8 @@
 @import '../../styles/styles.scss';
 
 :host {
-	margin-top: $userlist-margin-top;
-	margin-left: $userlist-margin-left;
 	padding-bottom: $pd-6;
 	display: inline-block;
-
 	@include card;
 }
 

@@ -4,7 +4,7 @@
 
 :host {
 	width: $userform-width;
-	height: $userform-height;
+	min-height: $userform-height;
 	margin-top: $userform-margin-top;
 	margin-right: $userform-marign-right;
 	margin-left: $pd-1;
@@ -43,6 +43,8 @@
 			float: right;
 			
 			background-image: url(../../images/close-24px.svg);
+
+			cursor: pointer;
 		}
 	}
 
@@ -59,5 +61,11 @@
 			color: $red;
 			font-size: $userform-error-text-size;
 		}
+	}
+
+	&__button {
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 }

@@ -41,100 +41,20 @@
       "user_type": "ADMIN"
     },
     {
-      "id": "test",
-      "first_name": "Testname",
-      "last_name": "Testlastname",
-      "email": "tt1@gmail.com",
-      "password": "75f823aa1e6927d885ec6f9715688ca6c5a0e580c029c8dc3f1b1ad43880ca9b",
+      "id": "ma",
+      "first_name": "ma",
+      "last_name": "ma",
+      "email": "ma@ma.ma",
+      "password": "9419f0ce38c279f2ea0f0756f9df952d88e148d383fd3fdd6a8711cd0a791603",
       "user_type": "DRIVER"
     },
     {
-      "id": "T5",
-      "first_name": "Test005",
-      "last_name": "Testtest005",
-      "email": "tt005@gmail.com",
-      "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+      "id": "mo",
+      "first_name": "mo",
+      "last_name": "mo",
+      "email": "mo@mo.mo",
+      "password": "b3f14ab8ccc8df9936d773ee5f1944f9b95feb059e38eb61422a558a62f8d26b",
       "user_type": "DRIVER"
-    },
-    {
-      "id": "T6",
-      "first_name": "Test",
-      "last_name": "Testtest6",
-      "email": "tt6@gmail.com",
-      "password": null,
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "T002",
-      "first_name": "Test002",
-      "last_name": "Testtest002",
-      "email": "tt002@gmail.com",
-      "password": null,
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "T003",
-      "first_name": "Test003",
-      "last_name": "Testtest003",
-      "email": "tt003@gmail.com",
-      "password": "12345678",
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "T004",
-      "first_name": "Test004",
-      "last_name": "Test004",
-      "email": "tt004",
-      "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "T2",
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "password": "cff986c250c306ca817ea78003f2083b05600cc19df01d3fa2af158bfb848aec",
-      "user_type": null
-    },
-    {
-      "id": "sldfjds12",
-      "first_name": "sdfsdfsdf",
-      "last_name": "sdfds",
-      "email": "sdfs@j.co",
-      "password": "17f80754644d33ac685b0842a402229adbb43fc9312f7bdf36ba24237a1f1ffb",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "T003",
-      "first_name": "Test",
-      "last_name": "Test",
-      "email": "tt003@gmail.com",
-      "password": "daaad6e5604e8e17bd9f108d91e26afe6281dac8fda0091040a7a6d7bd9b43b5",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "3223",
-      "first_name": "sdfsdfs",
-      "last_name": "sdfsdfdsfd",
-      "email": "sdfsdfsdfds@ljfds.co",
-      "password": "6930dda8d7cc63896916a8104dcd17691cf24345c16dcc108e528ca3c1105c81",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "T003",
-      "first_name": "Changed",
-      "last_name": "Lalala",
-      "email": "lsdfs@ld.co",
-      "password": "6930dda8d7cc63896916a8104dcd17691cf24345c16dcc108e528ca3c1105c81",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "T003",
-      "first_name": "Updated",
-      "last_name": "updated",
-      "email": "uu222@kd.c",
-      "password": "daaad6e5604e8e17bd9f108d91e26afe6281dac8fda0091040a7a6d7bd9b43b5",
-      "user_type": "ADMIN"
     }
   ]
 }

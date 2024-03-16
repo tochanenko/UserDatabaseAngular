@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../types/user.class';
@@ -8,7 +8,7 @@ import { MandatoryDirective } from '../../directives/mandatory.directive';
 import { NameCharactersDirective } from '../../directives/name-characters.directive';
 
 import sha from 'sha.js';
-import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
+import { Observable, catchError, ignoreElements, mergeMap, of, throwError } from 'rxjs';
 import { TextInputComponent } from '../text-input/text-input.component';
 import { UserType } from '../../types/user-type.type';
 @Component({
@@ -28,6 +28,9 @@ import { UserType } from '../../types/user-type.type';
   styleUrl: './user-form.component.scss'
 })
 export class UserFormComponent {
+
+  @Output() finished = new EventEmitter<boolean>();
+
   json = JSON;
   createUserForm = this.formBuilder.group({
     id: '',
@@ -48,32 +51,34 @@ export class UserFormComponent {
   ) {}
 
   onSubmit(): void {
+    console.log(JSON.stringify(this.createUserForm.value, null, 4));
     if (this.checkFormHasErrors()) {
       // TODO Implement Showing Error Message
       console.log("FIX ALL ERRORS!");
     } else {
-      this.userService.getUser(this.createUserForm.value.id!).pipe(
-        mergeMap( (user: User | null) => {
-          if (user == null) {
+      this.userService.getUsers().pipe(
+        mergeMap( (users: User[]) => {
+          let existingUser: User | undefined = users.find((user: User) => user.id == this.createUserForm.value.id);
+          if (existingUser != null) {
+            return of(existingUser);
+          } else {
             let newUser = new User(
               this.createUserForm.value.id,
               this.createUserForm.value.first_name,
               this.createUserForm.value.last_name,
               this.createUserForm.value.email,
-              sha('sha256').update(this.createUserForm.value.password!).digest('hex'),
+              this.encodeString(this.createUserForm.value.password!),
               this.createUserForm.value.user_type
             );
-
             this.createUserForm.reset();
-          
             return this.userService.postUser(newUser);
-          } else { return of({}) }
+          }
         })
-      ).subscribe( (user: any) => {
-        // TODO Implement Showing Error Message
+      ).subscribe( (user: User) => {
+        // TODO Implement Success / Error Message
         console.log(JSON.stringify(user, null, 4));
+        this.closeForm();
       });
-      
     }
   }
 
@@ -111,11 +116,19 @@ export class UserFormComponent {
     return touched && (Object.keys(errors).length > 0);
   }
 
+  closeForm(): void {
+    this.finished.emit(true);
+  }
+
   private checkFormHasErrors(): Boolean {
     let hasErrors = false;
     Object.keys(this.createUserForm.controls).forEach( (key: string | readonly (string | number)[]) => {
       if (this.createUserForm.get(key)?.errors != null) hasErrors = true;
     });
     return hasErrors;
+  }
+
+  private encodeString(text: string): string {
+    return sha('sha256').update(text).digest('hex')
   }
 }
