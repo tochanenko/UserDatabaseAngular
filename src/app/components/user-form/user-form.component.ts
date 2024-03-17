@@ -116,6 +116,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   deleteUser(): void {
     this.userService.deleteUser(this.composeUpdatedUser()).subscribe( () => {
       // TODO Implement Success / Error Message
+      this.notificationService.showSuccess("User deleted");
       this.closeForm();
     });
   }
@@ -194,6 +195,7 @@ export class UserFormComponent implements OnInit, OnChanges {
       })
     ).subscribe( (user: User) => {
       // TODO Implement Success / Error Message
+      this.notificationService.showSuccess("User updated");
       this.closeForm();
     });
   }
@@ -202,6 +204,7 @@ export class UserFormComponent implements OnInit, OnChanges {
     let updatedUser = this.composeUpdatedUser();
     this.userService.updateUser(updatedUser).subscribe( (user: User) => {
       // TODO Implement Success / Error Message
+      this.notificationService.showSuccess("User updated");
       this.closeForm();
     });
   }

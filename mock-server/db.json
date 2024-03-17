@@ -62,22 +62,22 @@
       "last_name": "New",
       "email": "nn@n.co",
       "password": "13f2a2536bebb84b25a4235cfd8e48c2b01136e682e8d4d8089f36a38b0bf69f",
-      "user_type": ""
+      "user_type": "ADMIN"
     },
     {
-      "id": "newuser3",
+      "id": "new2",
+      "first_name": "new",
+      "last_name": "new",
+      "email": "nn@n.co",
+      "password": "78c2f5733151a5fdc713fdc2b7af11eeffb64299802f3a529195a6fca071319e",
+      "user_type": "DRIVER"
+    },
+    {
+      "id": "new",
       "first_name": "New",
       "last_name": "New",
       "email": "nn@n.co",
-      "password": "13f2a2536bebb84b25a4235cfd8e48c2b01136e682e8d4d8089f36a38b0bf69f",
-      "user_type": ""
-    },
-    {
-      "id": "newuser4",
-      "first_name": "New",
-      "last_name": "New",
-      "email": "nn@n.co",
-      "password": "13f2a2536bebb84b25a4235cfd8e48c2b01136e682e8d4d8089f36a38b0bf69f",
+      "password": "9f4b043ea8f40fbf0f3dc3687e8780fae7cd464021e0e3b5827e36dc6e3e172c",
       "user_type": "DRIVER"
     }
   ]
