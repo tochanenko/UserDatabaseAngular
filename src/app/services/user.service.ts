@@ -61,6 +61,7 @@ export class UserService {
   }
 
   deleteUser(id: string): Observable<unknown> {
+    console.log(`Deleting user: [${id}]`);
     return this.http.delete(
       `${this.baseUrl}/${id}`, { headers: { Accept: 'application/json' } }
     ).pipe(

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UserService } from "../services/user.service";
 import * as UserActions from './actions';
-import { forkJoin, map, mergeMap, switchMap } from "rxjs";
+import { first, forkJoin, map, mergeMap, switchMap } from "rxjs";
 import { User } from "../types/user.class";
 import { NotificationService } from "../services/notification.service";
 
@@ -28,7 +28,9 @@ export class UserEffects {
 			ofType(UserActions.deleteUser),
 			switchMap(action =>
 				this.userService.deleteUser(action.id).pipe(
+					first(),
 					map(() => {
+						console.log("Deleting user " + action.id);
 						this.notificationService.showSuccess("User deleted");
 						return UserActions.deleteUserSuccess();
 					})
@@ -42,7 +44,9 @@ export class UserEffects {
 			ofType(UserActions.postUser),
 			switchMap(action =>
 				this.userService.postUser(action.user).pipe(
+					first(),
 					map(() => {
+						console.log("Posting user " + action.user.id);
 						this.notificationService.showSuccess("User created");
 						return UserActions.postUserSuccess();
 					})
@@ -56,7 +60,9 @@ export class UserEffects {
 			ofType(UserActions.updateUser),
 			switchMap(action =>
 				this.userService.updateUser(action.user).pipe(
+					first(),
 					map(() => {
+						console.log("Updated user " + action.user.id);
 						this.notificationService.showSuccess("User updated");
 						return UserActions.updateUserSuccess();
 					})
@@ -70,10 +76,12 @@ export class UserEffects {
 			ofType(UserActions.updateUserChangeId),
 			switchMap(action =>
 				forkJoin({
-					updateUserResponse: this.userService.updateUser(action.user),
+					updateUserResponse: this.userService.postUser(action.user),
 					deleteUserResponse: this.userService.deleteUser(action.id)
 				}).pipe(
+					first(),
 					map(() => {
+						console.log("Updated user " + action.user.id + " after removing" + action.id);
 						this.notificationService.showSuccess("User updated");
 						return UserActions.updateUserChangeIdSuccess();
 					}),
