@@ -20,8 +20,8 @@
 			display:block;
 			position: absolute;
 
-			top: $pd-07;
-			left: $pd-5;
+			top: $pd-28;
+			left: $pd-16;
 			
 			background-image: url('../../images/email-24px.svg');
 		}
@@ -29,7 +29,7 @@
 
 	&__field {
 		width: 100%;
-		padding: $pd-5;
+		padding: $pd-16;
 		margin-top: $textinput-field-label-margin;
 		margin-bottom: $textinput-field-margin-bottom;
 

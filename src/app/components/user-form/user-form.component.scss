@@ -7,11 +7,11 @@
 	min-height: $userform-height;
 	margin-top: $userform-margin-top;
 	margin-right: $userform-marign-right;
-	margin-left: $pd-1;
+	margin-left: $pd-26;
 	display: inline-block;
 
 	box-sizing: border-box; 
-	padding: $pd-1;
+	padding: $pd-26;
 
 	vertical-align:top;
 
@@ -24,7 +24,7 @@
 		margin-bottom: $userform-header-margin-bottom;
 
 		&__text {
-			height: $pd-5;
+			height: $pd-16;
 			
 			position: relative;
 			vertical-align: middle;

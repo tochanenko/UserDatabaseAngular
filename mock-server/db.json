@@ -39,38 +39,6 @@
       "email": "h_maxi@gmail.com",
       "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "user_type": "DRIVER"
-    },
-    {
-      "id": "wolf",
-      "first_name": "Wolf",
-      "last_name": "Gang",
-      "email": "wolf.ganggaga@gmail.com",
-      "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "poppy_seeds",
-      "first_name": "Poppy",
-      "last_name": "Seeds",
-      "email": "poppy.seeds@gmail.com",
-      "password": "b7dd490503df616fa7fed483a8706581fa8f728d6be7e0774b8dd56ad4d17bc5",
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "tarhun",
-      "first_name": "Tarhun",
-      "last_name": "Denisovich",
-      "email": "tarchun@gmail.com",
-      "password": "e5afd1c3f1278b5ab6f4458d3a2d93ab90db1b660f1c5bd5aca8e8382a50a974",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "Popa223",
-      "first_name": "Popa",
-      "last_name": "FFF",
-      "email": "popoa@gmail.com",
-      "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "user_type": "DRIVER"
     }
   ]
 }
