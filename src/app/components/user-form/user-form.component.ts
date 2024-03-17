@@ -110,6 +110,13 @@ export class UserFormComponent implements OnInit, OnChanges {
     this.finished.emit(true);
   }
 
+  deleteUser(): void {
+    this.userService.deleteUser(this.composeUpdatedUser()).subscribe( () => {
+      // TODO Implement Success / Error Message
+      this.closeForm();
+    });
+  }
+
   private updateForm() {
     if (this.user != null) {
       this.createUserForm.get('id')?.setValue(this.user.id);

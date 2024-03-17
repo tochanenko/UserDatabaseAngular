@@ -33,31 +33,7 @@
       "user_type": "ADMIN"
     },
     {
-      "id": "ma",
-      "first_name": "ma",
-      "last_name": "ma",
-      "email": "ma@ma.ma",
-      "password": "9419f0ce38c279f2ea0f0756f9df952d88e148d383fd3fdd6a8711cd0a791603",
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "mo",
-      "first_name": "mo",
-      "last_name": "mo",
-      "email": "mo@mo.mo",
-      "password": "b3f14ab8ccc8df9936d773ee5f1944f9b95feb059e38eb61422a558a62f8d26b",
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "mp",
-      "first_name": "mo",
-      "last_name": "mo",
-      "email": "mo@mo.mo",
-      "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "max",
+      "id": "max99",
       "first_name": "Maxim",
       "last_name": "Hevorgyan",
       "email": "h_maxi@gmail.com",

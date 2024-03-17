@@ -138,7 +138,7 @@
 		*ngIf="user != null"
 		class="userform__button--spaced"
 	>
-		<button class="button-red" type="submit">Delete</button>
+		<button class="button--red" (click)="deleteUser()">Delete</button>
 		<button type="submit">Save</button>
 	</div>
 </form>
