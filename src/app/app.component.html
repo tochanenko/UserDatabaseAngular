@@ -1,2 +1,18 @@
-<userlist />
+<div class="app">
+	<div class="app__left">
+		<button class="app__left__createbutton" (click)="showUserCreateForm()">Create User</button>
+		<user-list
+			class="app__left__userlist"
+			(selectedUser)="selectUser($event)"
+		/>
+	</div>
+	
+	<user-form
+		*ngIf="createFormVisibility"
+		class="app__right"
+		[user]="userToEdit"
+		(finished)="closeForm($event)"
+	/>
+</div>
+
 <router-outlet />

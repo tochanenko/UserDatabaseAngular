@@ -1,4 +1,19 @@
-* {
-	font-family: 'Helvetica', 'Arial', sans-serif;
-}
+@import './styles/colors.scss';
+@import './styles/dimens.scss';
+@import './styles/styles.scss';
 
+.app {
+	&__left {
+		width: $usertable-width;
+		position: relative;
+		margin-top: $userlist-margin-top;
+		margin-left: $userlist-margin-left;
+		display: inline-block;
+
+		&__createbutton {
+			position: absolute;
+			right: 0;
+			top: -64px;
+		}
+	}
+}

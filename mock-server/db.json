@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "id": "max99",
-      "first_name": "Maxim",
-      "last_name": "Hevorgyan",
-      "email": "h_maxi@gmail.com",
-      "password": "75f823aa1e6927d885ec6f9715677ca6c5a0e580c029c8dc3f1b1ad43880ca9b",
-      "user_type": "DRIVER"
-    },
-    {
       "id": "j_smith",
       "first_name": "Jack",
       "last_name": "Helpert",
@@ -26,10 +18,10 @@
     },
     {
       "id": "amazing",
-      "first_name": "Artem",
+      "first_name": "Artemis",
       "last_name": "Mazovski",
       "email": "amazing@gmail.com",
-      "password": "ba1b7a466573cb8e84c26fb58db693bd50a272732e3024a02be3ffbfc917ec2b",
+      "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "user_type": "ADMIN"
     },
     {
@@ -41,52 +33,12 @@
       "user_type": "ADMIN"
     },
     {
-      "id": "test",
-      "first_name": "Testname",
-      "last_name": "Testlastname",
-      "email": "tt1@gmail.com",
-      "password": "75f823aa1e6927d885ec6f9715688ca6c5a0e580c029c8dc3f1b1ad43880ca9b",
+      "id": "max99",
+      "first_name": "Maxim",
+      "last_name": "Hevorgyan",
+      "email": "h_maxi@gmail.com",
+      "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "user_type": "DRIVER"
-    },
-    {
-      "id": "T5",
-      "first_name": "Test005",
-      "last_name": "Testtest005",
-      "email": "tt005@gmail.com",
-      "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "T6",
-      "first_name": "Test",
-      "last_name": "Testtest6",
-      "email": "tt6@gmail.com",
-      "password": null,
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "T002",
-      "first_name": "Test002",
-      "last_name": "Testtest002",
-      "email": "tt002@gmail.com",
-      "password": null,
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "T003",
-      "first_name": "Test003",
-      "last_name": "Testtest003",
-      "email": "tt003@gmail.com",
-      "password": "12345678",
-      "user_type": "DRIVER"
-    },
-    {
-      "id": "T004",
-      "first_name": "Test004",
-      "last_name": "Test004",
-      "email": "tt004",
-      "password": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
-      "user_type": "ADMIN"
     }
   ]
 }

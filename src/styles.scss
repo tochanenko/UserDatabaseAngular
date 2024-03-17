@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './app/styles/colors.scss';
+@import './app/styles/dimens.scss';
+@import './app/styles/styles.scss';
+
+* {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+body {
+	background-color: $app-background-color;
+	padding: 0;
+	width: 1920px;
+	height: 1080px;
+}
+
+button {
+	padding: $button-paddings;
+
+	border-radius: $border-radius;
+
+	background-color: $blue;
+	box-shadow: $shadow-blue;
+
+	outline: 0;
+	border: 0;
+
+	color: $button-text-color;
+	font-size: $button-text-size;
+
+	transition: .3s box-shadow;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: $shadow-blue-hover;
+	}
+
+	&:active {
+		filter: brightness(90%);
+		box-shadow: $shadow-blue-active;
+	}
+}
+
+.button--red {
+	background-color: $magenta;
+	box-shadow: $shadow-red;
+
+	&:hover {
+		cursor: pointer;
+		box-shadow: $shadow-red-hover;
+	}
+
+	&:active {
+		filter: brightness(90%);
+		box-shadow: $shadow-red-active;
+	}
+}

@@ -1,0 +1,66 @@
+@import '../../styles/colors.scss';
+@import '../../styles/dimens.scss';
+@import '../../styles/styles.scss';
+
+.textinput {
+	width: 100%;
+
+	&__label {
+		width: 100%;
+		display: block;
+
+		color: $text-color;
+		font-size: $textinput-label-text-size;
+
+		&.email::before {
+			content: ' ';
+			width: $textinput-email-icon-size;
+			height: $textinput-email-icon-size;
+
+			display:block;
+			position: absolute;
+
+			top: $pd-07;
+			left: $pd-5;
+			
+			background-image: url('../../images/email-24px.svg');
+		}
+	}
+
+	&__field {
+		width: 100%;
+		padding: $pd-5;
+		margin-top: $textinput-field-label-margin;
+		margin-bottom: $textinput-field-margin-bottom;
+
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+    	-webkit-box-sizing: border-box;
+
+		border: 0px;
+		outline: 0px;
+		box-shadow: none;
+		border-radius: $border-radius;
+
+		background-color: $textinput-field-color;
+
+		color: $text-color;
+		font-size: $textinput-field-text-size;
+
+		&:active,
+		&:focus {
+			outline: $border-blue;
+			box-shadow: $shadow-blue;
+		}
+
+		&[type="email"] {
+			padding-left: 46px;
+		}
+
+		&.error {
+			outline: $border-red;
+			box-shadow: $shadow-red;
+			color: $red;
+		}
+	}
+}

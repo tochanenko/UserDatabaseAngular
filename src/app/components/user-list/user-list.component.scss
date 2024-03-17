@@ -3,15 +3,9 @@
 @import '../../styles/styles.scss';
 
 :host {
-	margin-top: $userlist-margin-top;
-	margin-left: $userlist-margin-left;
-	padding-bottom: $pd-4;
+	padding-bottom: $pd-6;
 	display: inline-block;
-
-	background-color: $background-color;
-	outline: $border-gray;
-	border-radius: $border-radius;
-	box-shadow: $shadow;
+	@include card;
 }
 
 .userstable {
@@ -43,6 +37,8 @@
 
 		background-color: $usertable-row-background-color;
 		transition: .3s background-color;
+
+		cursor: pointer;
 
 		&:hover {
 			background-color: $usertable-row-background-color--hover;

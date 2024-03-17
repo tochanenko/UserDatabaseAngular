@@ -1,0 +1,77 @@
+@import '../../styles/colors.scss';
+@import '../../styles/dimens.scss';
+@import '../../styles/styles.scss';
+
+:host {
+	width: $userform-width;
+	min-height: $userform-height;
+	margin-top: $userform-margin-top;
+	margin-right: $userform-marign-right;
+	margin-left: $pd-1;
+	display: inline-block;
+
+	box-sizing: border-box; 
+	padding: $pd-1;
+
+	vertical-align:top;
+
+	@include card;
+}
+
+.userform {
+	&__header {
+		height: $userform-header-close-size;
+		margin-bottom: $userform-header-margin-bottom;
+
+		&__text {
+			height: $pd-5;
+			
+			position: relative;
+			vertical-align: middle;
+			display: inline-block;
+			
+			color: $text-color;
+			font-size: $userform-header-text-size;
+			line-height: $userform-header-text-size;
+			font-weight: bold;
+		}
+
+		&__close {
+			width: $userform-header-close-size;
+			height: $userform-header-close-size;
+			
+			float: right;
+			
+			background-image: url(../../images/close-24px.svg);
+
+			cursor: pointer;
+		}
+	}
+
+	&__field {
+		position: relative;
+
+		&__error {
+			position: absolute;
+			bottom: $userform-error-text-bottom-position;
+
+			padding: 0;
+			margin: 0;
+
+			color: $red;
+			font-size: $userform-error-text-size;
+		}
+	}
+
+	&__button {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+
+		&--spaced {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+}
