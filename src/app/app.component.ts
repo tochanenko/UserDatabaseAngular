@@ -9,7 +9,7 @@ import { NotificationComponent } from "./components/notification/notification.co
     styleUrl: './app.component.scss',
     imports: [
         RouterOutlet,
-        NotificationComponent
+        NotificationComponent,
     ]
 })
 export class AppComponent {

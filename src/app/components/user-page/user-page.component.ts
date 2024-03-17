@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import { UserListComponent } from '../user-list/user-list.component';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { NgIf } from '@angular/common';
-import { NotificationComponent } from '../notification/notification.component';
 import { User } from '../../types/user.class';
 
 @Component({
@@ -34,7 +33,6 @@ export class UserPageComponent {
   }
 
   selectUser(event: User) {
-    console.log(JSON.stringify(event, null, 4));
     this.userToEdit = event;
     this.createFormVisibility = true;
   }

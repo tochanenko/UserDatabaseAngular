@@ -1,17 +1,20 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { User } from '../../types/user.class';
 import { PasswordStrengthDirective } from '../../directives/password-strength.directive';
 import { CommonModule, NgIf } from '@angular/common';
 import { MandatoryDirective } from '../../directives/mandatory.directive';
 import { NameCharactersDirective } from '../../directives/name-characters.directive';
-
-import sha from 'sha.js';
-import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
+import { Observable, first } from 'rxjs';
 import { TextInputComponent } from '../text-input/text-input.component';
 import { UserType } from '../../types/user-type.type';
 import { NotificationService } from '../../services/notification.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/store';
+import * as UserActions from '../../store/actions';
+import { userSelector } from '../../store/selectors';
+import sha from 'sha.js';
+
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -43,19 +46,17 @@ export class UserFormComponent implements OnInit, OnChanges {
     password_repeat: new FormControl({ value: '', disabled: false})
   });
 
-  userWithId$: Observable<User> | null = null;
-  userWithIdError$: Observable<User> | null = null;
+  userWithId$: Observable<User | undefined> | null = null;
 
   constructor(
-    private userService: UserService,
     private formBuilder: FormBuilder,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
     this.updateForm();
   }
-
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updateForm();
@@ -64,7 +65,6 @@ export class UserFormComponent implements OnInit, OnChanges {
   onSubmit(): void {
     if (this.checkFormHasErrors()) {
       this.notificationService.showError("Form has errors");
-      console.log("FIX ALL ERRORS!");
     } else if (this.user == null) {
       this.postNewUser();
     } else if (this.user.id != this.createUserForm.value.id) {
@@ -76,11 +76,7 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   checkUser(event: Event) {
     let newUserId = (event.target as HTMLInputElement).value;
-    this.userWithId$ = this.userService.getUser(newUserId);
-    this.userWithIdError$ = this.userWithId$.pipe(
-      ignoreElements(),
-      catchError((err) => of(err))
-    );
+    this.userWithId$ = this.store.select(userSelector(newUserId));
   }
 
   controlEmpty(controlName: string): boolean | null | undefined {
@@ -113,15 +109,8 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   deleteUser(): void {
-    this.userService.deleteUser(this.composeUpdatedUser()).pipe(
-      catchError((err) => {
-        this.notificationService.showSuccess("Internal server error");
-        return of(err);
-      })
-    ).subscribe( () => {
-      this.notificationService.showSuccess("User deleted");
-      this.closeForm();
-    });
+    this.store.dispatch(UserActions.deleteUser({ id: this.createUserForm.get('id')?.value }));
+    this.closeForm();
   }
 
   private updateForm() {
@@ -163,13 +152,9 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   private postNewUser(): void {
-    this.userService.getUsers().pipe(
-      mergeMap( (users: User[]) => {
-        let existingUser: User | undefined = users.find((user: User) => user.id == this.createUserForm.value.id);
-        if (existingUser != null) {
-          this.notificationService.showError("User created");
-          return of(null);
-        } else {
+    this.store.select(userSelector(this.createUserForm.get('id')!.value)).pipe(first()).subscribe(
+      (user: User | undefined) => {
+        if (user == undefined) {
           let newUser = new User(
             this.createUserForm.value.id,
             this.createUserForm.value.first_name,
@@ -179,60 +164,39 @@ export class UserFormComponent implements OnInit, OnChanges {
             this.createUserForm.value.user_type == '' ? 'DRIVER' : this.createUserForm.value.user_type
           );
           this.createUserForm.reset();
-          return this.userService.postUser(newUser);
+          this.store.dispatch(UserActions.postUser({ user: newUser }));
+          this.closeForm();
+        } else {
+          this.notificationService.showError(`User with id ${user.id} already exists`);
         }
-      }),
-      catchError((err) => {
-        this.notificationService.showSuccess("Internal server error");
-        return of(err);
-      })
-    ).subscribe( (user: User | null) => {
-      if (user != null) {
-        this.closeForm();
-        this.notificationService.showSuccess("User created");
       }
-    });
+    );
   }
 
   private deleteExistingPostUpdatedUser(): void {
     let updatedUser = this.composeUpdatedUser();
-    this.userService.deleteUser(this.user!).pipe(
-      mergeMap(() => {
-        this.createUserForm.reset();
-        return this.userService.postUser(updatedUser);
-      }),
-      catchError((err) => {
-        this.notificationService.showSuccess("Internal server error");
-        return of(err);
-      })
-    ).subscribe( (user: User) => {
-      this.notificationService.showSuccess("User updated");
-      this.closeForm();
-    });
+    this.store.dispatch(UserActions.updateUserChangeId({
+      id: this.user?.id!,
+      user: updatedUser
+    }));
+    this.closeForm();
   }
 
   private postUpdatedUser(): void {
     let updatedUser = this.composeUpdatedUser();
-    this.userService.updateUser(updatedUser).pipe(
-      catchError((err) => {
-        this.notificationService.showSuccess("Internal server error");
-        return of(err);
-      })
-    ).subscribe( (user: User) => {
-      this.notificationService.showSuccess("User updated");
-      this.closeForm();
-    });
+    this.store.dispatch(UserActions.updateUser({ user: updatedUser }));
+    this.closeForm();
   }
 
   private composeUpdatedUser(): User {
     return new User(
-      this.createUserForm.value.id,
-      this.createUserForm.value.first_name,
-      this.createUserForm.value.last_name,
-      this.createUserForm.value.email,
-      (this.createUserForm.value.password.empty && this.createUserForm.value.password_repeat.empty)
-        ? this.user!.password : this.encodeString(this.createUserForm.value.password!),
-      this.createUserForm.value.user_type
+      this.createUserForm.get('id')?.value,
+      this.createUserForm.get('first_name')?.value,
+      this.createUserForm.get('last_name')?.value,
+      this.createUserForm.get('email')?.value,
+      (this.createUserForm.get('password')?.value.empty && this.createUserForm.get('password_repeat')?.value.empty)
+        ? this.user!.password : this.encodeString(this.createUserForm.get('password')?.value!),
+      this.createUserForm.get('user_type')?.value
     );
   }
 }

@@ -1,4 +1,7 @@
-<table class="userstable">
+<table
+	*ngIf="users$ | async as users"
+	class="userstable"
+>
 	<tr class="userstable__header">
 		<th>Username</th>
 		<th>First Name</th>

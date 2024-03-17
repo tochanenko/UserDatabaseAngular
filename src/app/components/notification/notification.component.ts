@@ -1,7 +1,7 @@
 import { CommonModule, NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
-import { Observable, mergeMap, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { NotificationMessage, NotificationType } from '../../types/notification.class';
 
 @Component({
