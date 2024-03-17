@@ -30,7 +30,6 @@ export class UserEffects {
 				this.userService.deleteUser(action.id).pipe(
 					first(),
 					map(() => {
-						console.log("Deleting user " + action.id);
 						this.notificationService.showSuccess("User deleted");
 						return UserActions.deleteUserSuccess();
 					})
@@ -46,7 +45,6 @@ export class UserEffects {
 				this.userService.postUser(action.user).pipe(
 					first(),
 					map(() => {
-						console.log("Posting user " + action.user.id);
 						this.notificationService.showSuccess("User created");
 						return UserActions.postUserSuccess();
 					})
@@ -62,7 +60,6 @@ export class UserEffects {
 				this.userService.updateUser(action.user).pipe(
 					first(),
 					map(() => {
-						console.log("Updated user " + action.user.id);
 						this.notificationService.showSuccess("User updated");
 						return UserActions.updateUserSuccess();
 					})
@@ -81,7 +78,6 @@ export class UserEffects {
 				}).pipe(
 					first(),
 					map(() => {
-						console.log("Updated user " + action.user.id + " after removing" + action.id);
 						this.notificationService.showSuccess("User updated");
 						return UserActions.updateUserChangeIdSuccess();
 					}),

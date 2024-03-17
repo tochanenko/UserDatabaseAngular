@@ -5,8 +5,6 @@ import { PasswordStrengthDirective } from '../../directives/password-strength.di
 import { CommonModule, NgIf } from '@angular/common';
 import { MandatoryDirective } from '../../directives/mandatory.directive';
 import { NameCharactersDirective } from '../../directives/name-characters.directive';
-
-import sha from 'sha.js';
 import { Observable, first } from 'rxjs';
 import { TextInputComponent } from '../text-input/text-input.component';
 import { UserType } from '../../types/user-type.type';
@@ -15,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/store';
 import * as UserActions from '../../store/actions';
 import { userSelector } from '../../store/selectors';
+import sha from 'sha.js';
 
 @Component({
   selector: 'user-form',
@@ -61,14 +60,11 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updateForm();
-    console.log("CHANGES");
   }
 
   onSubmit(): void {
-    console.log("SUBMIT");
     if (this.checkFormHasErrors()) {
       this.notificationService.showError("Form has errors");
-      console.log("FIX ALL ERRORS!");
     } else if (this.user == null) {
       this.postNewUser();
     } else if (this.user.id != this.createUserForm.value.id) {
@@ -114,7 +110,6 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   deleteUser(): void {
     this.store.dispatch(UserActions.deleteUser({ id: this.createUserForm.get('id')?.value }));
-    console.log("inside user-form.component.ts: [delete user]");
     this.closeForm();
   }
 
@@ -160,7 +155,6 @@ export class UserFormComponent implements OnInit, OnChanges {
     this.store.select(userSelector(this.createUserForm.get('id')!.value)).pipe(first()).subscribe(
       (user: User | undefined) => {
         if (user == undefined) {
-          console.log("Adding new user");
           let newUser = new User(
             this.createUserForm.value.id,
             this.createUserForm.value.first_name,
@@ -171,10 +165,8 @@ export class UserFormComponent implements OnInit, OnChanges {
           );
           this.createUserForm.reset();
           this.store.dispatch(UserActions.postUser({ user: newUser }));
-          console.log("inside user-form.component.ts: [post user]");
           this.closeForm();
         } else {
-          console.log("User already exists");
           this.notificationService.showError(`User with id ${user.id} already exists`);
         }
       }
@@ -187,15 +179,12 @@ export class UserFormComponent implements OnInit, OnChanges {
       id: this.user?.id!,
       user: updatedUser
     }));
-    console.log("inside user-form.component.ts: [delete existing post updated user]");
     this.closeForm();
   }
 
   private postUpdatedUser(): void {
     let updatedUser = this.composeUpdatedUser();
-    console.log(`Updating user [${JSON.stringify(updatedUser, null, 4)}]`);
     this.store.dispatch(UserActions.updateUser({ user: updatedUser }));
-    console.log("inside user-form.component.ts: [post updated user]");
     this.closeForm();
   }
 

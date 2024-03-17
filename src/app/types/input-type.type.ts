@@ -1,1 +1,0 @@
-export type InputType = 'TEXT' | 'EMAIL' | 'PASSWORD';
