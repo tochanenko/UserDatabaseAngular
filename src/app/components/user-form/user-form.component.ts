@@ -63,31 +63,12 @@ export class UserFormComponent implements OnInit, OnChanges {
     if (this.checkFormHasErrors()) {
       // TODO Implement Showing Error Message
       console.log("FIX ALL ERRORS!");
+    } else if (this.user == null) {
+      this.postNewUser();
+    } else if (this.user.id != this.createUserForm.value.id) {
+      this.deleteExistingPostUpdatedUser();
     } else {
-      this.userService.getUsers().pipe(
-        mergeMap( (users: User[]) => {
-          let existingUser: User | undefined = users.find((user: User) => user.id == this.createUserForm.value.id);
-          if (existingUser != null) {
-            return of(null);
-          } else {
-            let newUser = new User(
-              this.createUserForm.value.id,
-              this.createUserForm.value.first_name,
-              this.createUserForm.value.last_name,
-              this.createUserForm.value.email,
-              this.encodeString(this.createUserForm.value.password!),
-              this.createUserForm.value.user_type
-            );
-            this.createUserForm.reset();
-            return this.userService.postUser(newUser);
-          }
-        })
-      ).subscribe( (user: User | null) => {
-        if (user != null) {
-          this.closeForm();
-        }
-        // TODO Implement Success / Error Message
-      });
+      this.postUpdatedUser();
     }
   }
 
@@ -132,24 +113,97 @@ export class UserFormComponent implements OnInit, OnChanges {
   private updateForm() {
     if (this.user != null) {
       this.createUserForm.get('id')?.setValue(this.user.id);
+      this.createUserForm.get('id')?.disable;
       this.createUserForm.get('first_name')?.setValue(this.user.first_name);
       this.createUserForm.get('last_name')?.setValue(this.user.last_name);
       this.createUserForm.get('email')?.setValue(this.user.email);
       this.createUserForm.get('user_type')?.setValue(this.user.user_type);
-      this.createUserForm.get('password')?.setValue('');
-      this.createUserForm.get('password_repeat')?.setValue('');
+    } else {
+      this.createUserForm.get('id')?.setValue('');
+      this.createUserForm.get('id')?.enable;
+      this.createUserForm.get('first_name')?.setValue('');
+      this.createUserForm.get('last_name')?.setValue('');
+      this.createUserForm.get('email')?.setValue('');
+      this.createUserForm.get('user_type')?.setValue('');
     }
+    this.createUserForm.get('password')?.setValue('');
+    this.createUserForm.get('password_repeat')?.setValue('');
   }
 
   private checkFormHasErrors(): Boolean {
     let hasErrors = false;
     Object.keys(this.createUserForm.controls).forEach( (key: string | readonly (string | number)[]) => {
-      if (this.createUserForm.get(key)?.errors != null) hasErrors = true;
+      if ((key == 'password' || key == 'password_repeat')
+        && (this.createUserForm.get(key)?.hasError('empty') && this.user != null)
+      ) {
+        // Pass User Update if Password wasn't changed
+      }
+      else if (this.createUserForm.get(key)?.errors != null) hasErrors = true;
     });
     return hasErrors;
   }
 
   private encodeString(text: string): string {
     return sha('sha256').update(text).digest('hex')
+  }
+
+  private postNewUser(): void {
+    this.userService.getUsers().pipe(
+      mergeMap( (users: User[]) => {
+        let existingUser: User | undefined = users.find((user: User) => user.id == this.createUserForm.value.id);
+        if (existingUser != null) {
+          return of(null);
+        } else {
+          let newUser = new User(
+            this.createUserForm.value.id,
+            this.createUserForm.value.first_name,
+            this.createUserForm.value.last_name,
+            this.createUserForm.value.email,
+            this.encodeString(this.createUserForm.value.password!),
+            this.createUserForm.value.user_type
+          );
+          this.createUserForm.reset();
+          return this.userService.postUser(newUser);
+        }
+      })
+    ).subscribe( (user: User | null) => {
+      if (user != null) {
+        this.closeForm();
+      }
+      // TODO Implement Success / Error Message
+    });
+  }
+
+  private deleteExistingPostUpdatedUser(): void {
+    let updatedUser = this.composeUpdatedUser();
+    this.userService.deleteUser(this.user!).pipe(
+      mergeMap(() => {
+        this.createUserForm.reset();
+        return this.userService.postUser(updatedUser);
+      })
+    ).subscribe( (user: User) => {
+      // TODO Implement Success / Error Message
+      this.closeForm();
+    });
+  }
+
+  private postUpdatedUser(): void {
+    let updatedUser = this.composeUpdatedUser();
+    this.userService.updateUser(updatedUser).subscribe( (user: User) => {
+      // TODO Implement Success / Error Message
+      this.closeForm();
+    });
+  }
+
+  private composeUpdatedUser(): User {
+    return new User(
+      this.createUserForm.value.id,
+      this.createUserForm.value.first_name,
+      this.createUserForm.value.last_name,
+      this.createUserForm.value.email,
+      (this.createUserForm.value.password.empty && this.createUserForm.value.password_repeat.empty)
+        ? this.user!.password : this.encodeString(this.createUserForm.value.password!),
+      this.createUserForm.value.user_type
+    );
   }
 }

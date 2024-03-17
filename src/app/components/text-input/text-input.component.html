@@ -11,7 +11,6 @@
 
 		[formControl]="control"
 		[attr.placeholder]="label"
-		[disabled]="disabled"
 	/>
 
 	<select
@@ -21,7 +20,6 @@
 		(blur)="onTouched()"
 
 		class="textinput__field"
-		[disabled]="disabled"
 	>
 		<option value="ADMIN">Administrator</option>
 		<option value="DRIVER" [selected]="true">Driver</option>

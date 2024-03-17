@@ -1,14 +1,6 @@
 {
   "users": [
     {
-      "id": "max99",
-      "first_name": "Maxim",
-      "last_name": "Hevorgyan",
-      "email": "h_maxi@gmail.com",
-      "password": "75f823aa1e6927d885ec6f9715677ca6c5a0e580c029c8dc3f1b1ad43880ca9b",
-      "user_type": "DRIVER"
-    },
-    {
       "id": "j_smith",
       "first_name": "Jack",
       "last_name": "Helpert",
@@ -26,10 +18,10 @@
     },
     {
       "id": "amazing",
-      "first_name": "Artem",
+      "first_name": "Artemis",
       "last_name": "Mazovski",
       "email": "amazing@gmail.com",
-      "password": "ba1b7a466573cb8e84c26fb58db693bd50a272732e3024a02be3ffbfc917ec2b",
+      "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "user_type": "ADMIN"
     },
     {
@@ -61,7 +53,15 @@
       "first_name": "mo",
       "last_name": "mo",
       "email": "mo@mo.mo",
-      "password": "578e1a6629998224384d8c95ec421a28f328466303b5875776838724d3b2c416",
+      "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "user_type": "DRIVER"
+    },
+    {
+      "id": "max",
+      "first_name": "Maxim",
+      "last_name": "Hevorgyan",
+      "email": "h_maxi@gmail.com",
+      "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "user_type": "DRIVER"
     }
   ]
