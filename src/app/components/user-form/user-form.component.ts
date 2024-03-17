@@ -11,6 +11,7 @@ import sha from 'sha.js';
 import { Observable, catchError, ignoreElements, mergeMap, of, throwError } from 'rxjs';
 import { TextInputComponent } from '../text-input/text-input.component';
 import { UserType } from '../../types/user-type.type';
+import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -48,6 +49,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +64,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   onSubmit(): void {
     if (this.checkFormHasErrors()) {
       // TODO Implement Showing Error Message
+      this.notificationService.showError("Form has errors");
       console.log("FIX ALL ERRORS!");
     } else if (this.user == null) {
       this.postNewUser();
