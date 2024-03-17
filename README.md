@@ -48,11 +48,19 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass -Force
 
 # Main Features
 
+**Clean Code Principles**
+
 This App was written with [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), [KISS](https://en.wikipedia.org/wiki/KISS_principle) and [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it) principles in mind. This way this project can be expanded with new functionality with little to none changes to its architecture.
+
+**SCSS and BEM methodology**
 
 Fully hand-written CSS styles with complience with the [BEM](https://en.bem.info/methodology/) methodology. No frameworks were used to style components. SCSS was used for creating simpler CSS files and to keep up with [BEM](https://en.bem.info/methodology/) methodology with less code. All colors, dimentions and common styles were moved to separate files located in `./src/app/styles/` folder. This way it will be easy to modify styles across the whole project.
 
+**Custom `text-input` Component**
+
 A couple of custom components were implemented for delivering better functionality for default HTML elements. For example, `text-input` component enchances functionality of default `<input>` and `<select>` elements. `text-input` component behaves like a full-fledged Form Component, so no additinal methods for getting and setting its value are required. `text-input` component can also display custom icons, such as email icon.
+
+**Custom Validators and Directives**
 
 Custom `mandatory`, `name-characters` and `password-strength` validators were implemented with correspondable directives for easier use in HTML code. These directives also work with custom `text-input` component without any need for additional code.
 
@@ -60,19 +68,23 @@ Custom `mandatory`, `name-characters` and `password-strength` validators were im
 * `name-characters` validator is used for validating User's First and Last Names. Names with latin, cyrillic special characters like `Ґ` or `ß`, and symbols ` `, `-`, `'` are valid
 * `password-strength` validator is used to determine whether password is at least 8 characters long and has at least one number and one letter
 
-A custom 404 Error page was implemented.
+**Success and Error Notifications**
 
 A custom `NotificationService` was implemented to show Success and Error notifications. It's simple to use architecture allows any component and service to display notifications with 1 line of code. Notifications also fade overtime so they won't interfeer with user experience.
 
-`UserService` service with implementations of CRUD operations for Users was imolemented. It also displays handy errors if backend service is absent.
+**Other Features**
 
-This app uses [NgRx Store](https://ngrx.io/) for saving users for better and faster operations. Actions, Effects, Selectors and Reducers for Creating, Reading, Updating and Deleting Users were implemented.
+* `UserService` service with implementations of CRUD operations for Users was implemented. It also displays handy errors if backend service is absent.
 
-[RxJs](https://rxjs.dev/) was used to simplify work with streams of data.
+* A custom 404 Error page was implemented.
 
-[Redux Devtools](https://github.com/reduxjs/redux-devtools) integration is also available for easier future development.
+* This app uses [NgRx Store](https://ngrx.io/) for saving users for better and faster operations. Actions, Effects, Selectors and Reducers for Creating, Reading, Updating and Deleting Users were implemented.
 
-This app uses new [Angular Standalone App](https://angular.io/guide/standalone-components) architecture.
+* [RxJs](https://rxjs.dev/) was used to simplify work with streams of data.
+
+* [Redux Devtools](https://github.com/reduxjs/redux-devtools) integration is also available for easier future development.
+
+* This app uses new [Angular Standalone App](https://angular.io/guide/standalone-components) architecture.
 
 # Limitations & Ways to Improve
 
