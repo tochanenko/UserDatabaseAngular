@@ -1,0 +1,16 @@
+<div class="userpage">
+	<div class="userpage__left">
+		<button class="userpage__left__createbutton" (click)="showUserCreateForm()">Create User</button>
+		<user-list
+			class="userpage__left__userlist"
+			(selectedUser)="selectUser($event)"
+		/>
+	</div>
+	
+	<user-form
+		*ngIf="createFormVisibility"
+		class="userpage__right"
+		[user]="userToEdit"
+		(finished)="closeForm($event)"
+	/>
+</div>
