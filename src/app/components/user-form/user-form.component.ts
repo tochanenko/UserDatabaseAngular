@@ -12,6 +12,11 @@ import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
 import { TextInputComponent } from '../text-input/text-input.component';
 import { UserType } from '../../types/user-type.type';
 import { NotificationService } from '../../services/notification.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/store';
+import * as UserActions from '../../store/actions';
+import { userSelector } from '../../store/selectors';
+
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -43,13 +48,13 @@ export class UserFormComponent implements OnInit, OnChanges {
     password_repeat: new FormControl({ value: '', disabled: false})
   });
 
-  userWithId$: Observable<User> | null = null;
-  userWithIdError$: Observable<User> | null = null;
+  userWithId$: Observable<User | undefined> | null = null;
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
@@ -76,11 +81,7 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   checkUser(event: Event) {
     let newUserId = (event.target as HTMLInputElement).value;
-    this.userWithId$ = this.userService.getUser(newUserId);
-    this.userWithIdError$ = this.userWithId$.pipe(
-      ignoreElements(),
-      catchError((err) => of(err))
-    );
+    this.userWithId$ = this.store.select(userSelector(newUserId));
   }
 
   controlEmpty(controlName: string): boolean | null | undefined {
@@ -113,15 +114,8 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   deleteUser(): void {
-    this.userService.deleteUser(this.composeUpdatedUser()).pipe(
-      catchError((err) => {
-        this.notificationService.showSuccess("Internal server error");
-        return of(err);
-      })
-    ).subscribe( () => {
-      this.notificationService.showSuccess("User deleted");
-      this.closeForm();
-    });
+    this.store.dispatch(UserActions.deleteUser({ id: this.createUserForm.get('id')?.value }));
+    this.closeForm();
   }
 
   private updateForm() {
@@ -163,6 +157,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   private postNewUser(): void {
+    // TODO Remove User Service
     this.userService.getUsers().pipe(
       mergeMap( (users: User[]) => {
         let existingUser: User | undefined = users.find((user: User) => user.id == this.createUserForm.value.id);
@@ -179,6 +174,7 @@ export class UserFormComponent implements OnInit, OnChanges {
             this.createUserForm.value.user_type == '' ? 'DRIVER' : this.createUserForm.value.user_type
           );
           this.createUserForm.reset();
+          // TODO Remove User Service
           return this.userService.postUser(newUser);
         }
       }),
@@ -195,8 +191,9 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   private deleteExistingPostUpdatedUser(): void {
+    // TODO Remove User Service
     let updatedUser = this.composeUpdatedUser();
-    this.userService.deleteUser(this.user!).pipe(
+    this.userService.deleteUser(this.user!.id!).pipe(
       mergeMap(() => {
         this.createUserForm.reset();
         return this.userService.postUser(updatedUser);
@@ -212,6 +209,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   private postUpdatedUser(): void {
+    // TODO Remove User Service
     let updatedUser = this.composeUpdatedUser();
     this.userService.updateUser(updatedUser).pipe(
       catchError((err) => {

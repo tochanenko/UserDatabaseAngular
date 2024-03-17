@@ -39,38 +39,6 @@
       "email": "h_maxi@gmail.com",
       "password": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "user_type": "DRIVER"
-    },
-    {
-      "id": "newuser",
-      "first_name": "New",
-      "last_name": "User",
-      "email": "newuse@nc.co",
-      "password": "6930dda8d7cc63896916a8104dcd17691cf24345c16dcc108e528ca3c1105c81",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "newuser1",
-      "first_name": "New",
-      "last_name": "New",
-      "email": "nn@n.co",
-      "password": "13f2a2536bebb84b25a4235cfd8e48c2b01136e682e8d4d8089f36a38b0bf69f",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "newuser2",
-      "first_name": "New",
-      "last_name": "New",
-      "email": "nn@n.co",
-      "password": "13f2a2536bebb84b25a4235cfd8e48c2b01136e682e8d4d8089f36a38b0bf69f",
-      "user_type": "ADMIN"
-    },
-    {
-      "id": "new2",
-      "first_name": "new",
-      "last_name": "new",
-      "email": "nn@n.co",
-      "password": "78c2f5733151a5fdc713fdc2b7af11eeffb64299802f3a529195a6fca071319e",
-      "user_type": "DRIVER"
     }
   ]
 }

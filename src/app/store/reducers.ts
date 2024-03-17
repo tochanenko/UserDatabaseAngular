@@ -27,8 +27,15 @@ export const userReducer = createReducer(
 		UserActions.getUsers,
 		state => ({ ...state })
 	),
+	on (
+		UserActions.postUser,
+		(state, { user }) => ({
+			...state,
+			users: [...state.users, user]
+		})
+	),
 	on(
-		UserActions.removeUser,
+		UserActions.deleteUser,
 		(state, { id }) => ({
 			...state,
 			users: state.users.filter( it => it.id != id)

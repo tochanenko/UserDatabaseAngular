@@ -60,9 +60,9 @@ export class UserService {
     );
   }
 
-  deleteUser(user: User): Observable<unknown> {
+  deleteUser(id: string): Observable<unknown> {
     return this.http.delete(
-      `${this.baseUrl}/${user.id}`, { headers: { Accept: 'application/json' } }
+      `${this.baseUrl}/${id}`, { headers: { Accept: 'application/json' } }
     ).pipe(
       catchError((error: HttpErrorResponse) => {
         this.showErrorNotification(error);

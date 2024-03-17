@@ -15,28 +15,16 @@ import * as UserActions from '../../store/actions';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })
-export class UserListComponent implements OnInit {
-  users: User[] = [];
+export class UserListComponent {
   users$: Observable<User[]>;
 
   @Output() selectedUser = new EventEmitter<User>();
 
   constructor(
-    private userService: UserService,
     private store: Store<AppState>
   ) {
     this.users$ = this.store.select(usersSelector);
     this.store.dispatch(UserActions.getUsers());
-  }
-
-  ngOnInit(): void {
-    this.fetchUsers();
-  }
-
-  fetchUsers(): void {
-    this.userService.getUsers().subscribe((data: User[]) => {
-      this.users = data;
-    })
   }
 
   selectUser(user: User) {

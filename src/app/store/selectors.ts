@@ -8,3 +8,8 @@ export const usersSelector = createSelector(
 	users,
 	(state: UserState) => state.users
 )
+
+export const userSelector = (id: string) => createSelector(
+	users,
+	(state: UserState) => state.users.find( it => it.id == id)
+)

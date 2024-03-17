@@ -23,13 +23,13 @@
 			[type]="'text'"
 			[required]="true"
 			[hasErrors]="
-				(!createUserForm.get('id')!.hasError('empty') && ((userWithIdError$ | async) == null)) && createUserForm.get('id')?.touched
+				(!createUserForm.get('id')!.hasError('empty') && ((userWithId$ | async) != undefined)) && createUserForm.get('id')?.touched
 				|| controlEmpty('id')!
 				"
 			(change)="checkUser($event)"
 			mandatory
 		/>
-		<p class="userform__field__error" *ngIf="!createUserForm.get('id')?.hasError('empty') && ((userWithIdError$ | async) == null) && createUserForm.get('id')?.touched">User already exists</p>
+		<p class="userform__field__error" *ngIf="!createUserForm.get('id')?.hasError('empty') && ((userWithId$ | async) != undefined) && createUserForm.get('id')?.touched">User already exists</p>
 		<p class="userform__field__error" *ngIf="controlEmpty('id')">Username should not be empty</p>
 	</div>
 
