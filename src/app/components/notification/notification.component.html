@@ -1,0 +1,10 @@
+<p
+	*ngIf="(notification$ | async) as notification"
+	[ngClass]="{
+		'notification': true,
+		'notification--visible': visible,
+		'notification--hidden': !visible,
+		'notification--error': notification.type == nType.ERROR,
+		'notification--success': notification.type == nType.SUCCESS,
+	}"
+>{{ notification.text }}</p>

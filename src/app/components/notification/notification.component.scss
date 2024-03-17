@@ -1,0 +1,45 @@
+@import '../../styles/colors.scss';
+@import '../../styles/dimens.scss';
+@import '../../styles/styles.scss';
+
+.notification {
+	min-width: $notification-min-width;
+
+	top: $notification-top;
+	position: fixed;
+
+	padding: $pd-5;
+
+	color: $text-color-white;
+	font-size: $text-color-white;
+
+	border-radius: $border-radius;
+
+	z-index: 9999;
+
+	&--visible {
+		opacity: 1;
+	}
+
+	&--hidden {
+		animation: fadeout 1s ease-in;
+		animation-fill-mode: forwards;
+	}
+
+	&--error {
+		left: $notification-side;
+		background-color: $magenta;
+		box-shadow: $shadow-red-middle;
+	}
+
+	&--success {
+		right: $notification-side;
+		background-color: $green;
+		box-shadow: $shadow-green;
+	}
+}
+
+@keyframes fadeout {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}

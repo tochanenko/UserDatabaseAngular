@@ -8,9 +8,10 @@ import { MandatoryDirective } from '../../directives/mandatory.directive';
 import { NameCharactersDirective } from '../../directives/name-characters.directive';
 
 import sha from 'sha.js';
-import { Observable, catchError, ignoreElements, mergeMap, of, throwError } from 'rxjs';
+import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
 import { TextInputComponent } from '../text-input/text-input.component';
 import { UserType } from '../../types/user-type.type';
+import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -48,6 +49,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   onSubmit(): void {
     if (this.checkFormHasErrors()) {
-      // TODO Implement Showing Error Message
+      this.notificationService.showError("Form has errors");
       console.log("FIX ALL ERRORS!");
     } else if (this.user == null) {
       this.postNewUser();
@@ -111,8 +113,13 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   deleteUser(): void {
-    this.userService.deleteUser(this.composeUpdatedUser()).subscribe( () => {
-      // TODO Implement Success / Error Message
+    this.userService.deleteUser(this.composeUpdatedUser()).pipe(
+      catchError((err) => {
+        this.notificationService.showSuccess("Internal server error");
+        return of(err);
+      })
+    ).subscribe( () => {
+      this.notificationService.showSuccess("User deleted");
       this.closeForm();
     });
   }
@@ -145,8 +152,9 @@ export class UserFormComponent implements OnInit, OnChanges {
       ) {
         // Pass User Update if Password wasn't changed
       }
-      else if (this.createUserForm.get(key)?.errors != null) hasErrors = true;
+      else if (key != 'user_type' && this.createUserForm.get(key)?.errors != null) hasErrors = true;
     });
+    if (this.createUserForm.get('password')!.value != this.createUserForm.get('password_repeat')!.value) hasErrors = true;
     return hasErrors;
   }
 
@@ -159,6 +167,7 @@ export class UserFormComponent implements OnInit, OnChanges {
       mergeMap( (users: User[]) => {
         let existingUser: User | undefined = users.find((user: User) => user.id == this.createUserForm.value.id);
         if (existingUser != null) {
+          this.notificationService.showError("User created");
           return of(null);
         } else {
           let newUser = new User(
@@ -167,17 +176,21 @@ export class UserFormComponent implements OnInit, OnChanges {
             this.createUserForm.value.last_name,
             this.createUserForm.value.email,
             this.encodeString(this.createUserForm.value.password!),
-            this.createUserForm.value.user_type
+            this.createUserForm.value.user_type == '' ? 'DRIVER' : this.createUserForm.value.user_type
           );
           this.createUserForm.reset();
           return this.userService.postUser(newUser);
         }
+      }),
+      catchError((err) => {
+        this.notificationService.showSuccess("Internal server error");
+        return of(err);
       })
     ).subscribe( (user: User | null) => {
       if (user != null) {
         this.closeForm();
+        this.notificationService.showSuccess("User created");
       }
-      // TODO Implement Success / Error Message
     });
   }
 
@@ -187,17 +200,26 @@ export class UserFormComponent implements OnInit, OnChanges {
       mergeMap(() => {
         this.createUserForm.reset();
         return this.userService.postUser(updatedUser);
+      }),
+      catchError((err) => {
+        this.notificationService.showSuccess("Internal server error");
+        return of(err);
       })
     ).subscribe( (user: User) => {
-      // TODO Implement Success / Error Message
+      this.notificationService.showSuccess("User updated");
       this.closeForm();
     });
   }
 
   private postUpdatedUser(): void {
     let updatedUser = this.composeUpdatedUser();
-    this.userService.updateUser(updatedUser).subscribe( (user: User) => {
-      // TODO Implement Success / Error Message
+    this.userService.updateUser(updatedUser).pipe(
+      catchError((err) => {
+        this.notificationService.showSuccess("Internal server error");
+        return of(err);
+      })
+    ).subscribe( (user: User) => {
+      this.notificationService.showSuccess("User updated");
       this.closeForm();
     });
   }
