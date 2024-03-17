@@ -1,5 +1,5 @@
 <table
-	*ngIf="users$ | async as users_"
+	*ngIf="users$ | async as users"
 	class="userstable"
 >
 	<tr class="userstable__header">
@@ -10,7 +10,7 @@
 		<th>Type</th>
 	</tr>
 	<tr
-		*ngFor="let user of users_"
+		*ngFor="let user of users"
 		class="userstable__row"
 
 		(click)="selectUser(user)"
