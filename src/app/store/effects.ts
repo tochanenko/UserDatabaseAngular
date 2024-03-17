@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { UserService } from "../services/user.service";
 import * as UserActions from './actions';
-import { map, mergeMap, switchMap } from "rxjs";
+import { forkJoin, map, mergeMap, switchMap } from "rxjs";
 import { User } from "../types/user.class";
 import { NotificationService } from "../services/notification.service";
 
@@ -26,24 +26,59 @@ export class UserEffects {
 	deleteUser$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActions.deleteUser),
-			switchMap(action => {
-				this.notificationService.showSuccess("User deleted");
-				return this.userService.deleteUser(action.id).pipe(
-					map(() => UserActions.deleteUserSuccess())
+			switchMap(action =>
+				this.userService.deleteUser(action.id).pipe(
+					map(() => {
+						this.notificationService.showSuccess("User deleted");
+						return UserActions.deleteUserSuccess();
+					})
 				)
-			})
+			)
 		)
 	);
 
 	postUser$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActions.postUser),
-			switchMap(action => {
-				this.notificationService.showSuccess("User created");
-				return this.userService.postUser(action.user).pipe(
-					map(() => UserActions.postUserSuccess())
+			switchMap(action =>
+				this.userService.postUser(action.user).pipe(
+					map(() => {
+						this.notificationService.showSuccess("User created");
+						return UserActions.postUserSuccess();
+					})
 				)
-			})
+			)
 		)
+	);
+
+	updateUser$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(UserActions.updateUser),
+			switchMap(action =>
+				this.userService.updateUser(action.user).pipe(
+					map(() => {
+						this.notificationService.showSuccess("User updated");
+						return UserActions.updateUserSuccess();
+					})
+				)
+			)
+		)
+	);
+
+	updateUserChangedId$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(UserActions.updateUserChangeId),
+			switchMap(action =>
+				forkJoin({
+					updateUserResponse: this.userService.updateUser(action.user),
+					deleteUserResponse: this.userService.deleteUser(action.id)
+				}).pipe(
+					map(() => {
+						this.notificationService.showSuccess("User updated");
+						return UserActions.updateUserChangeIdSuccess();
+					}),
+      			)
+    		)
+  		)
 	);
 }

@@ -9,4 +9,6 @@ export const postUserSuccess = createAction('[User] Successfully created User');
 export const deleteUser = createAction('[User] Remove User', props<{ id: string }>());
 export const deleteUserSuccess = createAction('[User] Successfully deleted User');
 export const updateUser = createAction('[User] Update User', props<{ user: User}>());
-export const updateUserSuccess = createAction('[User] Successfully updated User', props<{ user: User}>());
+export const updateUserSuccess = createAction('[User] Successfully updated User');
+export const updateUserChangeId = createAction('[User] Update User', props<{ id: string, user: User}>());
+export const updateUserChangeIdSuccess = createAction('[User] Successfully updated User');
