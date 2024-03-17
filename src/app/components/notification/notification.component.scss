@@ -1,23 +1,37 @@
+@import '../../styles/colors.scss';
+@import '../../styles/dimens.scss';
+@import '../../styles/styles.scss';
+
 .notification {
-	top: 56px;
-	left: 46px;
+	min-width: $notification-min-width;
+
+	top: $notification-top;
+	left: $notification-left;
 	position: fixed;
 
-	padding: 16px;
-	background-color: #EF7DA0;
+	padding: $pd-5;
+	background-color: $magenta;
 
-	border-radius: 6px;
+	color: $text-color-white;
+	font-size: $text-color-white;
 
-	box-shadow: 0 10px 15px #EF7DA05C;
+	border-radius: $border-radius;
+
+	box-shadow: $shadow-red-middle;
 
 	z-index: 9999;
 
-	animation: fadeout 10s;
-	animation-fill-mode: forwards;
+	&--visible {
+		opacity: 1;
+	}
+
+	&--hidden {
+		animation: fadeout 1s ease-in;
+		animation-fill-mode: forwards;
+	}
 }
 
 @keyframes fadeout {
 	0% { opacity: 1; }
-	85% { opacity: 1; }
 	100% { opacity: 0; }
 }

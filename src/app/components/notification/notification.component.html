@@ -1,1 +1,4 @@
-<h1 class="notification" *ngIf="(notification$ | async) as notification">{{ notification }}</h1>
+<p
+	*ngIf="(notification$ | async) as notification"
+	[ngClass]="visible ? 'notification notification--visible' : 'notification notification--hidden'"
+>{{ notification }}</p>
