@@ -12,6 +12,7 @@ import { Observable, catchError, ignoreElements, mergeMap, of, throwError } from
 import { TextInputComponent } from '../text-input/text-input.component';
 import { UserType } from '../../types/user-type.type';
 import { NotificationService } from '../../services/notification.service';
+import { NotificationType } from '../../types/notification.class';
 @Component({
   selector: 'user-form',
   standalone: true,
@@ -63,7 +64,6 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   onSubmit(): void {
     if (this.checkFormHasErrors()) {
-      // TODO Implement Showing Error Message
       this.notificationService.showError("Form has errors");
       console.log("FIX ALL ERRORS!");
     } else if (this.user == null) {
@@ -148,7 +148,7 @@ export class UserFormComponent implements OnInit, OnChanges {
       ) {
         // Pass User Update if Password wasn't changed
       }
-      else if (this.createUserForm.get(key)?.errors != null) hasErrors = true;
+      else if (key != 'user_type' && this.createUserForm.get(key)?.errors != null) hasErrors = true;
     });
     return hasErrors;
   }
@@ -170,7 +170,7 @@ export class UserFormComponent implements OnInit, OnChanges {
             this.createUserForm.value.last_name,
             this.createUserForm.value.email,
             this.encodeString(this.createUserForm.value.password!),
-            this.createUserForm.value.user_type
+            this.createUserForm.value.user_type == '' ? 'DRIVER' : this.createUserForm.value.user_type
           );
           this.createUserForm.reset();
           return this.userService.postUser(newUser);
@@ -181,6 +181,7 @@ export class UserFormComponent implements OnInit, OnChanges {
         this.closeForm();
       }
       // TODO Implement Success / Error Message
+      this.notificationService.showSuccess("User created");
     });
   }
 
