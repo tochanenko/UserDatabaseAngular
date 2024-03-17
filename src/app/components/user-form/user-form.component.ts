@@ -8,11 +8,10 @@ import { MandatoryDirective } from '../../directives/mandatory.directive';
 import { NameCharactersDirective } from '../../directives/name-characters.directive';
 
 import sha from 'sha.js';
-import { Observable, catchError, ignoreElements, mergeMap, of, throwError } from 'rxjs';
+import { Observable, catchError, ignoreElements, mergeMap, of } from 'rxjs';
 import { TextInputComponent } from '../text-input/text-input.component';
 import { UserType } from '../../types/user-type.type';
 import { NotificationService } from '../../services/notification.service';
-import { NotificationType } from '../../types/notification.class';
 @Component({
   selector: 'user-form',
   standalone: true,

@@ -22,7 +22,7 @@ export class UserService {
     ).pipe(
       catchError((error: HttpErrorResponse) => {
         this.showErrorNotification(error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -33,7 +33,7 @@ export class UserService {
     ).pipe(
       catchError((error: HttpErrorResponse) => {
         this.showErrorNotification(error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -44,7 +44,7 @@ export class UserService {
     ).pipe(
       catchError((error: HttpErrorResponse) => {
         this.showErrorNotification(error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -55,7 +55,7 @@ export class UserService {
     ).pipe(
       catchError((error: HttpErrorResponse) => {
         this.showErrorNotification(error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -66,7 +66,7 @@ export class UserService {
     ).pipe(
       catchError((error: HttpErrorResponse) => {
         this.showErrorNotification(error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
